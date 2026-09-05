@@ -1,35 +1,24 @@
 <!DOCTYPE html>
-<html lang="es" class="scroll-smooth">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pizzería Borcelle - Menú Digital Interactivo</title>
-    <!-- Tailwind CSS CDN -->
+    <title>Pizzería Borcelle - Menú Digital</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts: Poppins -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
                         brand: {
-                            yellow: '#F3C532',
-                            yellowDark: '#E6B325',
-                            red: '#D32F2F',
-                            redDark: '#B71C1C',
-                            dark: '#1E1E1E',
-                            bg: '#F9F6F0',
-                            cardBg: '#FFFFFF'
+                            red: '#E53935',
+                            darkRed: '#C62828',
+                            yellow: '#FFB300',
+                            lightYellow: '#FFF8E1',
+                            dark: '#212121',
+                            cardBg: '#FAFAFA'
                         }
-                    },
-                    fontFamily: {
-                        sans: ['Poppins', 'sans-serif'],
                     }
                 }
             }
@@ -45,188 +34,202 @@
         }
     </style>
 </head>
-<body class="bg-brand-bg text-brand-dark font-sans pb-32">
+<body class="bg-gray-100 text-gray-800 font-sans antialiased pb-24">
 
-    <!-- Header / Branding -->
-    <header class="bg-brand-yellow pt-6 pb-4 px-4 shadow-md sticky top-0 z-40">
-        <div class="max-w-md mx-auto text-center">
-            <div class="flex items-center justify-center gap-2 mb-1">
-                <i class="fa-solid fa-pizza-slice text-brand-red text-3xl"></i>
-                <h1 class="text-2xl font-extrabold uppercase tracking-wide text-brand-red drop-shadow-sm">
-                    Pizzería Borcelle
-                </h1>
+    <header class="fixed top-0 left-0 right-0 bg-brand-red text-white shadow-md z-50">
+        <div class="max-w-md mx-auto px-4 py-3 text-center relative">
+            <div class="flex items-center justify-center space-x-2">
+                <i class="fa-solid fa-pizza-slice text-brand-yellow text-2xl"></i>
+                <h1 class="text-2xl font-black tracking-wide uppercase">Pizzería Borcelle</h1>
             </div>
-            <p class="text-xs font-semibold text-brand-dark opacity-80 uppercase tracking-widest mb-3">
-                La mejor pizza de la ciudad desde 2010
-            </p>
-
-            <!-- Buscador -->
-            <div class="relative">
-                <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+            <p class="text-xs font-medium text-amber-200 mt-0.5">La mejor pizza de la ciudad desde 2016</p>
+            
+            <div class="mt-3 relative">
+                <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i>
                 <input 
                     type="text" 
-                    id="search-input" 
-                    placeholder="Buscar plato, bebida, postre..." 
-                    class="w-full pl-9 pr-4 py-2 rounded-full bg-white text-sm text-brand-dark focus:outline-none focus:ring-2 focus:ring-brand-red shadow-inner"
-                    oninput="filterMenu()"
+                    id="searchInput" 
+                    oninput="filterProducts()" 
+                    placeholder="Buscar en el menú (ej. Pepperoni, Tiramisú)..." 
+                    class="w-full pl-9 pr-4 py-2 rounded-full text-sm text-gray-800 bg-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-brand-yellow shadow-inner"
                 >
             </div>
         </div>
     </header>
 
-    <!-- Barra Deslizadora de Categorías -->
-    <nav class="sticky top-[118px] bg-brand-bg/95 backdrop-blur-sm z-30 py-3 border-b border-black/5 shadow-sm">
-        <div class="max-w-md mx-auto px-4">
-            <div class="flex space-x-2 overflow-x-auto no-scrollbar py-1">
-                <button onclick="scrollToCategory('pizzas')" class="px-4 py-2 rounded-full bg-brand-red text-white text-xs font-bold whitespace-nowrap shadow-sm hover:bg-brand-redDark transition">
-                    🍕 Pizzas
-                </button>
-                <button onclick="scrollToCategory('pastas')" class="px-4 py-2 rounded-full bg-white text-brand-dark border border-gray-200 text-xs font-bold whitespace-nowrap shadow-sm hover:bg-gray-50 transition">
-                    🍝 Pastas
-                </button>
-                <button onclick="scrollToCategory('bebidas')" class="px-4 py-2 rounded-full bg-white text-brand-dark border border-gray-200 text-xs font-bold whitespace-nowrap shadow-sm hover:bg-gray-50 transition">
-                    🥤 Bebidas
-                </button>
-            </div>
+    <div class="h-32"></div>
+
+    <nav class="sticky top-[120px] bg-white border-b border-gray-200 shadow-sm z-40 py-2">
+        <div class="max-w-md mx-auto px-4 flex space-x-2 overflow-x-auto no-scrollbar scroll-smooth">
+            <button onclick="scrollToCategory('pizzas')" class="px-4 py-1.5 rounded-full bg-brand-red text-white text-xs font-bold whitespace-nowrap shadow-sm hover:bg-brand-darkRed transition">
+                <i class="fa-solid fa-pizza-slice mr-1"></i> Pizzas
+            </button>
+            <button onclick="scrollToCategory('pastas')" class="px-4 py-1.5 rounded-full bg-gray-200 text-gray-700 text-xs font-bold whitespace-nowrap shadow-sm hover:bg-gray-300 transition">
+                <i class="fa-solid fa-bowl-food mr-1"></i> Pastas
+            </button>
+            <button onclick="scrollToCategory('bebidas')" class="px-4 py-1.5 rounded-full bg-gray-200 text-gray-700 text-xs font-bold whitespace-nowrap shadow-sm hover:bg-gray-300 transition">
+                <i class="fa-solid fa-wine-glass mr-1"></i> Bebidas
+            </button>
+            <button onclick="scrollToCategory('postres')" class="px-4 py-1.5 rounded-full bg-gray-200 text-gray-700 text-xs font-bold whitespace-nowrap shadow-sm hover:bg-gray-300 transition">
+                <i class="fa-solid fa-ice-cream mr-1"></i> Postres
+            </button>
         </div>
     </nav>
 
-    <!-- Contenido Principal -->
-    <main class="max-w-md mx-auto px-4 mt-4 space-y-8" id="menu-container">
+    <main class="max-w-md mx-auto px-3 pt-4 space-y-6">
 
-        <!-- Categoría: Pizzas -->
         <section id="pizzas" class="category-section">
-            <div class="flex items-center gap-2 mb-3 border-b-2 border-brand-yellow pb-1">
-                <span class="text-xl">🍕</span>
-                <h2 class="text-lg font-bold uppercase tracking-wider text-brand-dark">Pizzas</h2>
+            <div class="flex items-center space-x-2 mb-3 border-b-2 border-brand-red pb-1">
+                <i class="fa-solid fa-pizza-slice text-brand-red"></i>
+                <h2 class="text-lg font-bold uppercase text-gray-800">Pizzas</h2>
             </div>
-            <div class="grid grid-cols-2 gap-3 items-stretch">
-                <div class="item-card bg-brand-cardBg rounded-xl p-3 shadow-sm border border-gray-100 flex flex-col justify-between h-full" data-name="margarita">
-                    <div>
-                        <h3 class="font-bold text-sm text-brand-dark">Margarita</h3>
-                        <p class="text-xs text-gray-500 mt-0.5">Salsa de tomate, mozzarella fresca y albahaca.</p>
-                    </div>
-                    <div class="mt-3 pt-2 border-t border-gray-50 flex items-center justify-between">
-                        <span class="font-extrabold text-sm text-brand-red">$95</span>
-                        <div class="flex items-center bg-gray-100 rounded-lg p-0.5">
-                            <button onclick="updateQty('margarita', -1, 95)" class="w-6 h-6 flex items-center justify-center bg-white rounded shadow-sm text-xs font-bold text-gray-700 active:scale-95">-</button>
-                            <span id="qty-margarita" class="w-6 text-center text-xs font-bold">0</span>
-                            <button onclick="updateQty('margarita', 1, 95)" class="w-6 h-6 flex items-center justify-center bg-brand-yellow rounded shadow-sm text-xs font-bold text-brand-dark active:scale-95">+</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="item-card bg-brand-cardBg rounded-xl p-3 shadow-sm border border-gray-100 flex flex-col justify-between h-full" data-name="pepperoni">
-                    <div>
-                        <h3 class="font-bold text-sm text-brand-dark">Pepperoni</h3>
-                        <p class="text-xs text-gray-500 mt-0.5">Salsa tradicional, doble queso y pepperoni crujiente.</p>
-                    </div>
-                    <div class="mt-3 pt-2 border-t border-gray-50 flex items-center justify-between">
-                        <span class="font-extrabold text-sm text-brand-red">$115</span>
-                        <div class="flex items-center bg-gray-100 rounded-lg p-0.5">
-                            <button onclick="updateQty('pepperoni', -1, 115)" class="w-6 h-6 flex items-center justify-center bg-white rounded shadow-sm text-xs font-bold text-gray-700 active:scale-95">-</button>
-                            <span id="qty-pepperoni" class="w-6 text-center text-xs font-bold">0</span>
-                            <button onclick="updateQty('pepperoni', 1, 115)" class="w-6 h-6 flex items-center justify-center bg-brand-yellow rounded shadow-sm text-xs font-bold text-brand-dark active:scale-95">+</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <div class="grid grid-cols-2 gap-3" id="grid-pizzas"></div>
         </section>
 
-        <!-- Categoría: Pastas -->
         <section id="pastas" class="category-section">
-            <div class="flex items-center gap-2 mb-3 border-b-2 border-brand-yellow pb-1">
-                <span class="text-xl">🍝</span>
-                <h2 class="text-lg font-bold uppercase tracking-wider text-brand-dark">Pastas</h2>
+            <div class="flex items-center space-x-2 mb-3 border-b-2 border-brand-red pb-1">
+                <i class="fa-solid fa-bowl-food text-brand-red"></i>
+                <h2 class="text-lg font-bold uppercase text-gray-800">Pastas</h2>
             </div>
-            <div class="grid grid-cols-2 gap-3 items-stretch">
-                <div class="item-card bg-brand-cardBg rounded-xl p-3 shadow-sm border border-gray-100 flex flex-col justify-between h-full" data-name="a la boloñesa">
-                    <div>
-                        <h3 class="font-bold text-sm text-brand-dark">A la boloñesa</h3>
-                        <p class="text-xs text-gray-500 mt-0.5">Tradicional salsa de carne y tomate italiano.</p>
-                    </div>
-                    <div class="mt-3 pt-2 border-t border-gray-50 flex items-center justify-between">
-                        <span class="font-extrabold text-sm text-brand-red">$90</span>
-                        <div class="flex items-center bg-gray-100 rounded-lg p-0.5">
-                            <button onclick="updateQty('a la boloñesa', -1, 90)" class="w-6 h-6 flex items-center justify-center bg-white rounded shadow-sm text-xs font-bold text-gray-700 active:scale-95">-</button>
-                            <span id="qty-a la boloñesa" class="w-6 text-center text-xs font-bold">0</span>
-                            <button onclick="updateQty('a la boloñesa', 1, 90)" class="w-6 h-6 flex items-center justify-center bg-brand-yellow rounded shadow-sm text-xs font-bold text-brand-dark active:scale-95">+</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <div class="grid grid-cols-2 gap-3" id="grid-pastas"></div>
         </section>
 
-        <!-- Categoría: Bebidas -->
         <section id="bebidas" class="category-section">
-            <div class="flex items-center gap-2 mb-3 border-b-2 border-brand-yellow pb-1">
-                <span class="text-xl">🥤</span>
-                <h2 class="text-lg font-bold uppercase tracking-wider text-brand-dark">Bebidas</h2>
+            <div class="flex items-center space-x-2 mb-3 border-b-2 border-brand-red pb-1">
+                <i class="fa-solid fa-wine-glass text-brand-red"></i>
+                <h2 class="text-lg font-bold uppercase text-gray-800">Bebidas</h2>
             </div>
-            <div class="grid grid-cols-2 gap-3 items-stretch">
-                <div class="item-card bg-brand-cardBg rounded-xl p-3 shadow-sm border border-gray-100 flex flex-col justify-between h-full" data-name="refresco">
-                    <div>
-                        <h3 class="font-bold text-sm text-brand-dark">Refresco</h3>
-                        <p class="text-xs text-gray-500 mt-0.5">Lata 355ml fría.</p>
-                    </div>
-                    <div class="mt-3 pt-2 border-t border-gray-50 flex items-center justify-between">
-                        <span class="font-extrabold text-sm text-brand-red">$30</span>
-                        <div class="flex items-center bg-gray-100 rounded-lg p-0.5">
-                            <button onclick="updateQty('refresco', -1, 30)" class="w-6 h-6 flex items-center justify-center bg-white rounded shadow-sm text-xs font-bold text-gray-700 active:scale-95">-</button>
-                            <span id="qty-refresco" class="w-6 text-center text-xs font-bold">0</span>
-                            <button onclick="updateQty('refresco', 1, 30)" class="w-6 h-6 flex items-center justify-center bg-brand-yellow rounded shadow-sm text-xs font-bold text-brand-dark active:scale-95">+</button>
-                        </div>
-                    </div>
-                </div>
+            <div class="grid grid-cols-2 gap-3" id="grid-bebidas"></div>
+        </section>
+
+        <section id="postres" class="category-section">
+            <div class="flex items-center space-x-2 mb-3 border-b-2 border-brand-red pb-1">
+                <i class="fa-solid fa-ice-cream text-brand-red"></i>
+                <h2 class="text-lg font-bold uppercase text-gray-800">Postres</h2>
             </div>
+            <div class="grid grid-cols-2 gap-3" id="grid-postres"></div>
         </section>
 
     </main>
 
-    <!-- Bar de Total / Botón Flotante -->
-    <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4 shadow-lg z-50">
+    <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-2xl z-50 px-4 py-3">
         <div class="max-w-md mx-auto flex items-center justify-between">
             <div>
-                <p class="text-xs text-gray-500 font-semibold">Total a pagar:</p>
-                <p id="total-amount" class="text-xl font-extrabold text-brand-red">$0</p>
+                <span class="block text-xs text-gray-500 font-medium">Total Estimado</span>
+                <span class="text-xl font-extrabold text-brand-red" id="totalAmount">$0.00</span>
             </div>
-            <button class="bg-brand-red hover:bg-brand-redDark text-white px-6 py-2.5 rounded-full font-bold text-sm transition shadow-md flex items-center gap-2">
-                <i class="fa-brands fa-whatsapp text-lg"></i> Pedir por WhatsApp
+            <button 
+                onclick="sendWhatsAppOrder()" 
+                id="btnWhatsapp" 
+                class="bg-green-600 hover:bg-green-700 text-white font-bold py-2.5 px-5 rounded-full shadow-lg flex items-center space-x-2 transition transform active:scale-95">
+                <i class="fa-brands fa-whatsapp text-lg"></i>
+                <span class="text-sm">Pedir por WhatsApp</span>
             </button>
         </div>
     </div>
 
-    <!-- JavaScript del Menú Interactivo -->
     <script>
+        // Data Extraída del Menú
+        const productsData = [
+            // PIZZAS
+            { id: 1, category: 'pizzas', name: 'Margarita', price: 95, desc: 'Salsa de tomate casera, queso mozzarella fresco y orégano.' },
+            { id: 2, category: 'pizzas', name: 'Cuatro quesos', price: 130, desc: 'Mezcla gourmet de mozzarella, gorgonzola, parmesano y provolone.' },
+            { id: 3, category: 'pizzas', name: 'Vegetariana', price: 100, desc: 'Pimientos, champiñones, cebolla, aceitunas y maíz dulce.' },
+            { id: 4, category: 'pizzas', name: 'Pepperoni', price: 115, desc: 'Clásicas rodajas de pepperoni crujiente con abundante mozzarella.' },
+            { id: 5, category: 'pizzas', name: 'Napolitana', price: 120, desc: 'Rodajas de tomate fresco, albahaca, ajo y queso mozzarella.' },
+            { id: 6, category: 'pizzas', name: 'Carnívora', price: 150, desc: 'Jamón, carne molida, tocineta, pepperoni y salchicha.' },
+            { id: 7, category: 'pizzas', name: 'Picante', price: 140, desc: 'Salami picante, jalapeños, aceitunas negras y toque de ají.' },
+            { id: 8, category: 'pizzas', name: 'Hawaiiana', price: 130, desc: 'Jamón cocido, trozos de piña jugosa y queso mozzarella.' },
+
+            // PASTAS
+            { id: 9, category: 'pastas', name: 'Al pesto', price: 80, desc: 'Pasta artesanal con salsa de albahaca fresca, piñones y parmesano.' },
+            { id: 10, category: 'pastas', name: 'A la boloñesa', price: 90, desc: 'Salsa tradicional italiana de carne picada y tomate maduro.' },
+            { id: 11, category: 'pastas', name: 'Cuatro quesos', price: 100, desc: 'Cremosa salsa fundida con cuatro selecciones de quesos finos.' },
+            { id: 12, category: 'pastas', name: 'Alfredo', price: 115, desc: 'Salsa cremosa a base de mantequilla, crema de leche y parmesano.' },
+            { id: 13, category: 'pastas', name: 'Con tomate fresco', price: 120, desc: 'Tomates cherry salteados con ajo, albahaca y aceite de oliva.' },
+            { id: 14, category: 'pastas', name: 'Con mariscos', price: 150, desc: 'Mezcla de camarones, calamares y mejillones en salsa de la casa.' },
+            { id: 15, category: 'pastas', name: 'Con vegetales', price: 100, desc: 'Vegetales de estación salteados al wok con finas hierbas.' },
+            { id: 16, category: 'pastas', name: 'Con salsa picante', price: 120, desc: 'Salsa pomodoro especiada con guindilla y toque de ajo.' },
+
+            // BEBIDAS
+            { id: 17, category: 'bebidas', name: 'Refresco', price: 30, desc: 'Lata refrescante de 355ml surtida.' },
+            { id: 18, category: 'bebidas', name: 'Limonada', price: 30, desc: 'Limonada natural recién exprimida con hielo.' },
+            { id: 19, category: 'bebidas', name: 'Agua', price: 20, desc: 'Botella de agua purificada 500ml.' },
+            { id: 20, category: 'bebidas', name: 'Café', price: 25, desc: 'Espresso o americano recién preparado.' },
+
+            // POSTRES
+            { id: 21, category: 'postres', name: 'Tiramisú', price: 55, desc: 'Clásico postre italiano con café, cacao y queso mascarpone.' },
+            { id: 22, category: 'postres', name: 'Helado de limón', price: 40, desc: 'Cremoso helado artesanal sabor cítrico refrescante.' },
+            { id: 23, category: 'postres', name: 'Helado de chocolate', price: 45, desc: 'Helado cremoso de cacao intenso con chispas.' },
+            { id: 24, category: 'postres', name: 'Tarta de pistache', price: 75, desc: 'Deliciosa tarta crujiente rellena de crema de pistacho.' }
+        ];
+
         const cart = {};
 
-        function updateQty(itemId, change, price) {
-            if (!cart[itemId]) cart[itemId] = { qty: 0, price: price };
-            cart[itemId].qty += change;
-            if (cart[itemId].qty < 0) cart[itemId].qty = 0;
+        function renderMenu() {
+            productsData.forEach(prod => {
+                cart[prod.id] = 0;
+                const grid = document.getElementById(`grid-${prod.category}`);
+                if (grid) {
+                    grid.innerHTML += createProductCard(prod);
+                }
+            });
+        }
+
+        function createProductCard(prod) {
+            return `
+                <div class="product-card bg-white rounded-xl p-3 shadow-sm border border-gray-100 flex flex-col justify-between" data-name="${prod.name.toLowerCase()}">
+                    <div>
+                        <h3 class="font-bold text-sm text-gray-900 leading-tight">${prod.name}</h3>
+                        <p class="text-[11px] text-gray-500 mt-1 line-clamp-2">${prod.desc}</p>
+                    </div>
+                    <div class="mt-3 pt-2 border-t border-gray-100 flex items-center justify-between">
+                        <span class="text-brand-red font-black text-sm">$${prod.price}</span>
+                        <div class="flex items-center space-x-1.5 bg-gray-100 rounded-full p-1">
+                            <button onclick="updateQty(${prod.id}, -1)" class="w-6 h-6 rounded-full bg-white text-gray-700 flex items-center justify-center text-xs font-bold shadow-xs active:bg-gray-200">-</button>
+                            <span id="qty-${prod.id}" class="text-xs font-bold w-4 text-center">0</span>
+                            <button onclick="updateQty(${prod.id}, 1)" class="w-6 h-6 rounded-full bg-brand-red text-white flex items-center justify-center text-xs font-bold shadow-xs active:bg-brand-darkRed">+</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function updateQty(id, change) {
+            const current = cart[id] || 0;
+            const newQty = Math.max(0, current + change);
+            cart[id] = newQty;
             
-            const qtyElement = document.getElementById(`qty-${itemId}`);
-            if (qtyElement) qtyElement.innerText = cart[itemId].qty;
-            
+            document.getElementById(`qty-${id}`).innerText = newQty;
             calculateTotal();
         }
 
         function calculateTotal() {
             let total = 0;
-            for (const key in cart) {
-                total += cart[key].qty * cart[key].price;
+            productsData.forEach(prod => {
+                total += (cart[prod.id] || 0) * prod.price;
+            });
+            document.getElementById('totalAmount').innerText = `$${total.toFixed(2)}`;
+        }
+
+        function scrollToCategory(catId) {
+            const element = document.getElementById(catId);
+            if (element) {
+                const headerOffset = 160;
+                const elementPosition = element.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: "smooth"
+                });
             }
-            document.getElementById('total-amount').innerText = `$${total}`;
         }
 
-        function scrollToCategory(id) {
-            const el = document.getElementById(id);
-            if (el) el.scrollIntoView({ behavior: 'smooth' });
-        }
+        function filterProducts() {
+            const query = document.getElementById('searchInput').value.toLowerCase().trim();
+            const cards = document.querySelectorAll('.product-card');
 
-        function filterMenu() {
-            const query = document.getElementById('search-input').value.toLowerCase();
-            const cards = document.querySelectorAll('.item-card');
             cards.forEach(card => {
                 const name = card.getAttribute('data-name');
                 if (name.includes(query)) {
@@ -235,7 +238,47 @@
                     card.style.display = 'none';
                 }
             });
+
+            document.querySelectorAll('.category-section').forEach(section => {
+                const visibleCards = section.querySelectorAll('.product-card[style="display: flex;"]');
+                if (query !== "" && visibleCards.length === 0) {
+                    section.style.display = 'none';
+                } else {
+                    section.style.display = 'block';
+                }
+            });
         }
+
+        function sendWhatsAppOrder() {
+            let orderItems = [];
+            let total = 0;
+
+            productsData.forEach(prod => {
+                const qty = cart[prod.id] || 0;
+                if (qty > 0) {
+                    const subtotal = qty * prod.price;
+                    total += subtotal;
+                    orderItems.push(`• *${qty}x* ${prod.name} - $${subtotal}`);
+                }
+            });
+
+            if (orderItems.length === 0) {
+                alert("Por favor, selecciona al menos un producto antes de realizar tu pedido.");
+                return;
+            }
+
+            let message = `*¡Hola! Quisiera realizar el siguiente pedido en Pizzería Borcelle:* 🍕\n\n`;
+            message += orderItems.join('\n');
+            message += `\n\n*Total a pagar: $${total.toFixed(2)}*\n\n`;
+            message += `📍 *Método de entrega:* (Delivery / Retiro en local)\n`;
+            message += `📝 *Notas adicionales:* `;
+
+            const encodedMessage = encodeURIComponent(message);
+            const phoneNumber = "584120000000"; // Reemplazar con el número del comercio
+            window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
+        }
+
+        document.addEventListener('DOMContentLoaded', renderMenu);
     </script>
 </body>
 </html>
