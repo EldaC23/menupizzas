@@ -36,7 +36,6 @@
         }
     </script>
     <style>
-        /* Ocultar scrollbar pero permitir scroll funcional */
         .no-scrollbar::-webkit-scrollbar {
             display: none;
         }
@@ -75,7 +74,7 @@
         </div>
     </header>
 
-    <!-- Barra Deslizadora de Categorías (Horizontal Scroll) -->
+    <!-- Barra Deslizadora de Categorías -->
     <nav class="sticky top-[118px] bg-brand-bg/95 backdrop-blur-sm z-30 py-3 border-b border-black/5 shadow-sm">
         <div class="max-w-md mx-auto px-4">
             <div class="flex space-x-2 overflow-x-auto no-scrollbar py-1">
@@ -88,14 +87,11 @@
                 <button onclick="scrollToCategory('bebidas')" class="px-4 py-2 rounded-full bg-white text-brand-dark border border-gray-200 text-xs font-bold whitespace-nowrap shadow-sm hover:bg-gray-50 transition">
                     🥤 Bebidas
                 </button>
-                <button onclick="scrollToCategory('postres')" class="px-4 py-2 rounded-full bg-white text-brand-dark border border-gray-200 text-xs font-bold whitespace-nowrap shadow-sm hover:bg-gray-50 transition">
-                    🍰 Postres
-                </button>
             </div>
         </div>
     </nav>
 
-    <!-- Contenido Principal / Menú -->
+    <!-- Contenido Principal -->
     <main class="max-w-md mx-auto px-4 mt-4 space-y-8" id="menu-container">
 
         <!-- Categoría: Pizzas -->
@@ -105,7 +101,6 @@
                 <h2 class="text-lg font-bold uppercase tracking-wider text-brand-dark">Pizzas</h2>
             </div>
             <div class="grid grid-cols-2 gap-3 items-stretch">
-                <!-- Card -->
                 <div class="item-card bg-brand-cardBg rounded-xl p-3 shadow-sm border border-gray-100 flex flex-col justify-between h-full" data-name="margarita">
                     <div>
                         <h3 class="font-bold text-sm text-brand-dark">Margarita</h3>
@@ -114,39 +109,9 @@
                     <div class="mt-3 pt-2 border-t border-gray-50 flex items-center justify-between">
                         <span class="font-extrabold text-sm text-brand-red">$95</span>
                         <div class="flex items-center bg-gray-100 rounded-lg p-0.5">
-                            <button onclick="updateQty('margarita', -1)" class="w-6 h-6 flex items-center justify-center bg-white rounded shadow-sm text-xs font-bold text-gray-700 active:scale-95">-</button>
+                            <button onclick="updateQty('margarita', -1, 95)" class="w-6 h-6 flex items-center justify-center bg-white rounded shadow-sm text-xs font-bold text-gray-700 active:scale-95">-</button>
                             <span id="qty-margarita" class="w-6 text-center text-xs font-bold">0</span>
-                            <button onclick="updateQty('margarita', 1)" class="w-6 h-6 flex items-center justify-center bg-brand-yellow rounded shadow-sm text-xs font-bold text-brand-dark active:scale-95">+</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="item-card bg-brand-cardBg rounded-xl p-3 shadow-sm border border-gray-100 flex flex-col justify-between h-full" data-name="cuatro quesos">
-                    <div>
-                        <h3 class="font-bold text-sm text-brand-dark">Cuatro quesos</h3>
-                        <p class="text-xs text-gray-500 mt-0.5">Mozzarella, gorgonzola, parmesano y fontina.</p>
-                    </div>
-                    <div class="mt-3 pt-2 border-t border-gray-50 flex items-center justify-between">
-                        <span class="font-extrabold text-sm text-brand-red">$130</span>
-                        <div class="flex items-center bg-gray-100 rounded-lg p-0.5">
-                            <button onclick="updateQty('cuatro quesos', -1)" class="w-6 h-6 flex items-center justify-center bg-white rounded shadow-sm text-xs font-bold text-gray-700 active:scale-95">-</button>
-                            <span id="qty-cuatro quesos" class="w-6 text-center text-xs font-bold">0</span>
-                            <button onclick="updateQty('cuatro quesos', 1)" class="w-6 h-6 flex items-center justify-center bg-brand-yellow rounded shadow-sm text-xs font-bold text-brand-dark active:scale-95">+</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="item-card bg-brand-cardBg rounded-xl p-3 shadow-sm border border-gray-100 flex flex-col justify-between h-full" data-name="vegetariana">
-                    <div>
-                        <h3 class="font-bold text-sm text-brand-dark">Vegetariana</h3>
-                        <p class="text-xs text-gray-500 mt-0.5">Pimientos, champiñones, cebolla, aceitunas y pimentón.</p>
-                    </div>
-                    <div class="mt-3 pt-2 border-t border-gray-50 flex items-center justify-between">
-                        <span class="font-extrabold text-sm text-brand-red">$100</span>
-                        <div class="flex items-center bg-gray-100 rounded-lg p-0.5">
-                            <button onclick="updateQty('vegetariana', -1)" class="w-6 h-6 flex items-center justify-center bg-white rounded shadow-sm text-xs font-bold text-gray-700 active:scale-95">-</button>
-                            <span id="qty-vegetariana" class="w-6 text-center text-xs font-bold">0</span>
-                            <button onclick="updateQty('vegetariana', 1)" class="w-6 h-6 flex items-center justify-center bg-brand-yellow rounded shadow-sm text-xs font-bold text-brand-dark active:scale-95">+</button>
+                            <button onclick="updateQty('margarita', 1, 95)" class="w-6 h-6 flex items-center justify-center bg-brand-yellow rounded shadow-sm text-xs font-bold text-brand-dark active:scale-95">+</button>
                         </div>
                     </div>
                 </div>
@@ -159,69 +124,9 @@
                     <div class="mt-3 pt-2 border-t border-gray-50 flex items-center justify-between">
                         <span class="font-extrabold text-sm text-brand-red">$115</span>
                         <div class="flex items-center bg-gray-100 rounded-lg p-0.5">
-                            <button onclick="updateQty('pepperoni', -1)" class="w-6 h-6 flex items-center justify-center bg-white rounded shadow-sm text-xs font-bold text-gray-700 active:scale-95">-</button>
+                            <button onclick="updateQty('pepperoni', -1, 115)" class="w-6 h-6 flex items-center justify-center bg-white rounded shadow-sm text-xs font-bold text-gray-700 active:scale-95">-</button>
                             <span id="qty-pepperoni" class="w-6 text-center text-xs font-bold">0</span>
-                            <button onclick="updateQty('pepperoni', 1)" class="w-6 h-6 flex items-center justify-center bg-brand-yellow rounded shadow-sm text-xs font-bold text-brand-dark active:scale-95">+</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="item-card bg-brand-cardBg rounded-xl p-3 shadow-sm border border-gray-100 flex flex-col justify-between h-full" data-name="napolitana">
-                    <div>
-                        <h3 class="font-bold text-sm text-brand-dark">Napolitana</h3>
-                        <p class="text-xs text-gray-500 mt-0.5">Rodajas de tomate fresco, ajo, orégano y mozzarella.</p>
-                    </div>
-                    <div class="mt-3 pt-2 border-t border-gray-50 flex items-center justify-between">
-                        <span class="font-extrabold text-sm text-brand-red">$120</span>
-                        <div class="flex items-center bg-gray-100 rounded-lg p-0.5">
-                            <button onclick="updateQty('napolitana', -1)" class="w-6 h-6 flex items-center justify-center bg-white rounded shadow-sm text-xs font-bold text-gray-700 active:scale-95">-</button>
-                            <span id="qty-napolitana" class="w-6 text-center text-xs font-bold">0</span>
-                            <button onclick="updateQty('napolitana', 1)" class="w-6 h-6 flex items-center justify-center bg-brand-yellow rounded shadow-sm text-xs font-bold text-brand-dark active:scale-95">+</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="item-card bg-brand-cardBg rounded-xl p-3 shadow-sm border border-gray-100 flex flex-col justify-between h-full" data-name="carnivora">
-                    <div>
-                        <h3 class="font-bold text-sm text-brand-dark">Carnívora</h3>
-                        <p class="text-xs text-gray-500 mt-0.5">Jamón, pepperoni, carne molida y tocineta ahumada.</p>
-                    </div>
-                    <div class="mt-3 pt-2 border-t border-gray-50 flex items-center justify-between">
-                        <span class="font-extrabold text-sm text-brand-red">$150</span>
-                        <div class="flex items-center bg-gray-100 rounded-lg p-0.5">
-                            <button onclick="updateQty('carnivora', -1)" class="w-6 h-6 flex items-center justify-center bg-white rounded shadow-sm text-xs font-bold text-gray-700 active:scale-95">-</button>
-                            <span id="qty-carnivora" class="w-6 text-center text-xs font-bold">0</span>
-                            <button onclick="updateQty('carnivora', 1)" class="w-6 h-6 flex items-center justify-center bg-brand-yellow rounded shadow-sm text-xs font-bold text-brand-dark active:scale-95">+</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="item-card bg-brand-cardBg rounded-xl p-3 shadow-sm border border-gray-100 flex flex-col justify-between h-full" data-name="picante">
-                    <div>
-                        <h3 class="font-bold text-sm text-brand-dark">Picante</h3>
-                        <p class="text-xs text-gray-500 mt-0.5">Salami picante, jalapeños y aceite de peperoncino.</p>
-                    </div>
-                    <div class="mt-3 pt-2 border-t border-gray-50 flex items-center justify-between">
-                        <span class="font-extrabold text-sm text-brand-red">$140</span>
-                        <div class="flex items-center bg-gray-100 rounded-lg p-0.5">
-                            <button onclick="updateQty('picante', -1)" class="w-6 h-6 flex items-center justify-center bg-white rounded shadow-sm text-xs font-bold text-gray-700 active:scale-95">-</button>
-                            <span id="qty-picante" class="w-6 text-center text-xs font-bold">0</span>
-                            <button onclick="updateQty('picante', 1)" class="w-6 h-6 flex items-center justify-center bg-brand-yellow rounded shadow-sm text-xs font-bold text-brand-dark active:scale-95">+</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="item-card bg-brand-cardBg rounded-xl p-3 shadow-sm border border-gray-100 flex flex-col justify-between h-full" data-name="hawaiana">
-                    <div>
-                        <h3 class="font-bold text-sm text-brand-dark">Hawaiana</h3>
-                        <p class="text-xs text-gray-500 mt-0.5">Jamón dulce, piña troceada y queso mozzarella.</p>
-                    </div>
-                    <div class="mt-3 pt-2 border-t border-gray-50 flex items-center justify-between">
-                        <span class="font-extrabold text-sm text-brand-red">$130</span>
-                        <div class="flex items-center bg-gray-100 rounded-lg p-0.5">
-                            <button onclick="updateQty('hawaiana', -1)" class="w-6 h-6 flex items-center justify-center bg-white rounded shadow-sm text-xs font-bold text-gray-700 active:scale-95">-</button>
-                            <span id="qty-hawaiana" class="w-6 text-center text-xs font-bold">0</span>
-                            <button onclick="updateQty('hawaiana', 1)" class="w-6 h-6 flex items-center justify-center bg-brand-yellow rounded shadow-sm text-xs font-bold text-brand-dark active:scale-95">+</button>
+                            <button onclick="updateQty('pepperoni', 1, 115)" class="w-6 h-6 flex items-center justify-center bg-brand-yellow rounded shadow-sm text-xs font-bold text-brand-dark active:scale-95">+</button>
                         </div>
                     </div>
                 </div>
@@ -235,22 +140,6 @@
                 <h2 class="text-lg font-bold uppercase tracking-wider text-brand-dark">Pastas</h2>
             </div>
             <div class="grid grid-cols-2 gap-3 items-stretch">
-
-                <div class="item-card bg-brand-cardBg rounded-xl p-3 shadow-sm border border-gray-100 flex flex-col justify-between h-full" data-name="al pesto">
-                    <div>
-                        <h3 class="font-bold text-sm text-brand-dark">Al pesto</h3>
-                        <p class="text-xs text-gray-500 mt-0.5">Salsa de albahaca fresca, piñones y parmesano.</p>
-                    </div>
-                    <div class="mt-3 pt-2 border-t border-gray-50 flex items-center justify-between">
-                        <span class="font-extrabold text-sm text-brand-red">$80</span>
-                        <div class="flex items-center bg-gray-100 rounded-lg p-0.5">
-                            <button onclick="updateQty('al pesto', -1)" class="w-6 h-6 flex items-center justify-center bg-white rounded shadow-sm text-xs font-bold text-gray-700 active:scale-95">-</button>
-                            <span id="qty-al pesto" class="w-6 text-center text-xs font-bold">0</span>
-                            <button onclick="updateQty('al pesto', 1)" class="w-6 h-6 flex items-center justify-center bg-brand-yellow rounded shadow-sm text-xs font-bold text-brand-dark active:scale-95">+</button>
-                        </div>
-                    </div>
-                </div>
-
                 <div class="item-card bg-brand-cardBg rounded-xl p-3 shadow-sm border border-gray-100 flex flex-col justify-between h-full" data-name="a la boloñesa">
                     <div>
                         <h3 class="font-bold text-sm text-brand-dark">A la boloñesa</h3>
@@ -259,99 +148,9 @@
                     <div class="mt-3 pt-2 border-t border-gray-50 flex items-center justify-between">
                         <span class="font-extrabold text-sm text-brand-red">$90</span>
                         <div class="flex items-center bg-gray-100 rounded-lg p-0.5">
-                            <button onclick="updateQty('a la boloñesa', -1)" class="w-6 h-6 flex items-center justify-center bg-white rounded shadow-sm text-xs font-bold text-gray-700 active:scale-95">-</button>
+                            <button onclick="updateQty('a la boloñesa', -1, 90)" class="w-6 h-6 flex items-center justify-center bg-white rounded shadow-sm text-xs font-bold text-gray-700 active:scale-95">-</button>
                             <span id="qty-a la boloñesa" class="w-6 text-center text-xs font-bold">0</span>
-                            <button onclick="updateQty('a la boloñesa', 1)" class="w-6 h-6 flex items-center justify-center bg-brand-yellow rounded shadow-sm text-xs font-bold text-brand-dark active:scale-95">+</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="item-card bg-brand-cardBg rounded-xl p-3 shadow-sm border border-gray-100 flex flex-col justify-between h-full" data-name="cuatro quesos pasta">
-                    <div>
-                        <h3 class="font-bold text-sm text-brand-dark">Cuatro quesos</h3>
-                        <p class="text-xs text-gray-500 mt-0.5">Cremosa combinación de quesos madurados.</p>
-                    </div>
-                    <div class="mt-3 pt-2 border-t border-gray-50 flex items-center justify-between">
-                        <span class="font-extrabold text-sm text-brand-red">$100</span>
-                        <div class="flex items-center bg-gray-100 rounded-lg p-0.5">
-                            <button onclick="updateQty('cuatro quesos pasta', -1)" class="w-6 h-6 flex items-center justify-center bg-white rounded shadow-sm text-xs font-bold text-gray-700 active:scale-95">-</button>
-                            <span id="qty-cuatro quesos pasta" class="w-6 text-center text-xs font-bold">0</span>
-                            <button onclick="updateQty('cuatro quesos pasta', 1)" class="w-6 h-6 flex items-center justify-center bg-brand-yellow rounded shadow-sm text-xs font-bold text-brand-dark active:scale-95">+</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="item-card bg-brand-cardBg rounded-xl p-3 shadow-sm border border-gray-100 flex flex-col justify-between h-full" data-name="alfredo">
-                    <div>
-                        <h3 class="font-bold text-sm text-brand-dark">Alfredo</h3>
-                        <p class="text-xs text-gray-500 mt-0.5">Salsa blanca a base de crema, mantequilla y parmesano.</p>
-                    </div>
-                    <div class="mt-3 pt-2 border-t border-gray-50 flex items-center justify-between">
-                        <span class="font-extrabold text-sm text-brand-red">$115</span>
-                        <div class="flex items-center bg-gray-100 rounded-lg p-0.5">
-                            <button onclick="updateQty('alfredo', -1)" class="w-6 h-6 flex items-center justify-center bg-white rounded shadow-sm text-xs font-bold text-gray-700 active:scale-95">-</button>
-                            <span id="qty-alfredo" class="w-6 text-center text-xs font-bold">0</span>
-                            <button onclick="updateQty('alfredo', 1)" class="w-6 h-6 flex items-center justify-center bg-brand-yellow rounded shadow-sm text-xs font-bold text-brand-dark active:scale-95">+</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="item-card bg-brand-cardBg rounded-xl p-3 shadow-sm border border-gray-100 flex flex-col justify-between h-full" data-name="con tomate fresco">
-                    <div>
-                        <h3 class="font-bold text-sm text-brand-dark">Con tomate fresco</h3>
-                        <p class="text-xs text-gray-500 mt-0.5">Tomates maduros salteados con ajo y oliva.</p>
-                    </div>
-                    <div class="mt-3 pt-2 border-t border-gray-50 flex items-center justify-between">
-                        <span class="font-extrabold text-sm text-brand-red">$120</span>
-                        <div class="flex items-center bg-gray-100 rounded-lg p-0.5">
-                            <button onclick="updateQty('con tomate fresco', -1)" class="w-6 h-6 flex items-center justify-center bg-white rounded shadow-sm text-xs font-bold text-gray-700 active:scale-95">-</button>
-                            <span id="qty-con tomate fresco" class="w-6 text-center text-xs font-bold">0</span>
-                            <button onclick="updateQty('con tomate fresco', 1)" class="w-6 h-6 flex items-center justify-center bg-brand-yellow rounded shadow-sm text-xs font-bold text-brand-dark active:scale-95">+</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="item-card bg-brand-cardBg rounded-xl p-3 shadow-sm border border-gray-100 flex flex-col justify-between h-full" data-name="con mariscos">
-                    <div>
-                        <h3 class="font-bold text-sm text-brand-dark">Con mariscos</h3>
-                        <p class="text-xs text-gray-500 mt-0.5">Camarones y calamares en salsa marinara.</p>
-                    </div>
-                    <div class="mt-3 pt-2 border-t border-gray-50 flex items-center justify-between">
-                        <span class="font-extrabold text-sm text-brand-red">$150</span>
-                        <div class="flex items-center bg-gray-100 rounded-lg p-0.5">
-                            <button onclick="updateQty('con mariscos', -1)" class="w-6 h-6 flex items-center justify-center bg-white rounded shadow-sm text-xs font-bold text-gray-700 active:scale-95">-</button>
-                            <span id="qty-con mariscos" class="w-6 text-center text-xs font-bold">0</span>
-                            <button onclick="updateQty('con mariscos', 1)" class="w-6 h-6 flex items-center justify-center bg-brand-yellow rounded shadow-sm text-xs font-bold text-brand-dark active:scale-95">+</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="item-card bg-brand-cardBg rounded-xl p-3 shadow-sm border border-gray-100 flex flex-col justify-between h-full" data-name="con vegetales">
-                    <div>
-                        <h3 class="font-bold text-sm text-brand-dark">Con vegetales</h3>
-                        <p class="text-xs text-gray-500 mt-0.5">Mix de vegetales de temporada a la sartén.</p>
-                    </div>
-                    <div class="mt-3 pt-2 border-t border-gray-50 flex items-center justify-between">
-                        <span class="font-extrabold text-sm text-brand-red">$100</span>
-                        <div class="flex items-center bg-gray-100 rounded-lg p-0.5">
-                            <button onclick="updateQty('con vegetales', -1)" class="w-6 h-6 flex items-center justify-center bg-white rounded shadow-sm text-xs font-bold text-gray-700 active:scale-95">-</button>
-                            <span id="qty-con vegetales" class="w-6 text-center text-xs font-bold">0</span>
-                            <button onclick="updateQty('con vegetales', 1)" class="w-6 h-6 flex items-center justify-center bg-brand-yellow rounded shadow-sm text-xs font-bold text-brand-dark active:scale-95">+</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="item-card bg-brand-cardBg rounded-xl p-3 shadow-sm border border-gray-100 flex flex-col justify-between h-full" data-name="con salsa picante">
-                    <div>
-                        <h3 class="font-bold text-sm text-brand-dark">Con salsa picante</h3>
-                        <p class="text-xs text-gray-500 mt-0.5">Salsa Arrabbiata intensa con guindilla.</p>
-                    </div>
-                    <div class="mt-3 pt-2 border-t border-gray-50 flex items-center justify-between">
-                        <span class="font-extrabold text-sm text-brand-red">$120</span>
-                        <div class="flex items-center bg-gray-100 rounded-lg p-0.5">
-                            <button onclick="updateQty('con salsa picante', -1)" class="w-6 h-6 flex items-center justify-center bg-white rounded shadow-sm text-xs font-bold text-gray-700 active:scale-95">-</button>
-                            <span id="qty-con salsa picante" class="w-6 text-center text-xs font-bold">0</span>
-                            <button onclick="updateQty('con salsa picante', 1)" class="w-6 h-6 flex items-center justify-center bg-brand-yellow rounded shadow-sm text-xs font-bold text-brand-dark active:scale-95">+</button>
+                            <button onclick="updateQty('a la boloñesa', 1, 90)" class="w-6 h-6 flex items-center justify-center bg-brand-yellow rounded shadow-sm text-xs font-bold text-brand-dark active:scale-95">+</button>
                         </div>
                     </div>
                 </div>
@@ -365,7 +164,6 @@
                 <h2 class="text-lg font-bold uppercase tracking-wider text-brand-dark">Bebidas</h2>
             </div>
             <div class="grid grid-cols-2 gap-3 items-stretch">
-
                 <div class="item-card bg-brand-cardBg rounded-xl p-3 shadow-sm border border-gray-100 flex flex-col justify-between h-full" data-name="refresco">
                     <div>
                         <h3 class="font-bold text-sm text-brand-dark">Refresco</h3>
@@ -374,240 +172,61 @@
                     <div class="mt-3 pt-2 border-t border-gray-50 flex items-center justify-between">
                         <span class="font-extrabold text-sm text-brand-red">$30</span>
                         <div class="flex items-center bg-gray-100 rounded-lg p-0.5">
-                            <button onclick="updateQty('refresco', -1)" class="w-6 h-6 flex items-center justify-center bg-white rounded shadow-sm text-xs font-bold text-gray-700 active:scale-95">-</button>
+                            <button onclick="updateQty('refresco', -1, 30)" class="w-6 h-6 flex items-center justify-center bg-white rounded shadow-sm text-xs font-bold text-gray-700 active:scale-95">-</button>
                             <span id="qty-refresco" class="w-6 text-center text-xs font-bold">0</span>
-                            <button onclick="updateQty('refresco', 1)" class="w-6 h-6 flex items-center justify-center bg-brand-yellow rounded shadow-sm text-xs font-bold text-brand-dark active:scale-95">+</button>
+                            <button onclick="updateQty('refresco', 1, 30)" class="w-6 h-6 flex items-center justify-center bg-brand-yellow rounded shadow-sm text-xs font-bold text-brand-dark active:scale-95">+</button>
                         </div>
                     </div>
                 </div>
-
-                <div class="item-card bg-brand-cardBg rounded-xl p-3 shadow-sm border border-gray-100 flex flex-col justify-between h-full" data-name="limonada">
-                    <div>
-                        <h3 class="font-bold text-sm text-brand-dark">Limonada</h3>
-                        <p class="text-xs text-gray-500 mt-0.5">Natural e insitu.</p>
-                    </div>
-                    <div class="mt-3 pt-2 border-t border-gray-50 flex items-center justify-between">
-                        <span class="font-extrabold text-sm text-brand-red">$30</span>
-                        <div class="flex items-center bg-gray-100 rounded-lg p-0.5">
-                            <button onclick="updateQty('limonada', -1)" class="w-6 h-6 flex items-center justify-center bg-white rounded shadow-sm text-xs font-bold text-gray-700 active:scale-95">-</button>
-                            <span id="qty-limonada" class="w-6 text-center text-xs font-bold">0</span>
-                            <button onclick="updateQty('limonada', 1)" class="w-6 h-6 flex items-center justify-center bg-brand-yellow rounded shadow-sm text-xs font-bold text-brand-dark active:scale-95">+</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="item-card bg-brand-cardBg rounded-xl p-3 shadow-sm border border-gray-100 flex flex-col justify-between h-full" data-name="agua">
-                    <div>
-                        <h3 class="font-bold text-sm text-brand-dark">Agua</h3>
-                        <p class="text-xs text-gray-500 mt-0.5">Embotellada 500ml.</p>
-                    </div>
-                    <div class="mt-3 pt-2 border-t border-gray-50 flex items-center justify-between">
-                        <span class="font-extrabold text-sm text-brand-red">$20</span>
-                        <div class="flex items-center bg-gray-100 rounded-lg p-0.5">
-                            <button onclick="updateQty('agua', -1)" class="w-6 h-6 flex items-center justify-center bg-white rounded shadow-sm text-xs font-bold text-gray-700 active:scale-95">-</button>
-                            <span id="qty-agua" class="w-6 text-center text-xs font-bold">0</span>
-                            <button onclick="updateQty('agua', 1)" class="w-6 h-6 flex items-center justify-center bg-brand-yellow rounded shadow-sm text-xs font-bold text-brand-dark active:scale-95">+</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="item-card bg-brand-cardBg rounded-xl p-3 shadow-sm border border-gray-100 flex flex-col justify-between h-full" data-name="cafe">
-                    <div>
-                        <h3 class="font-bold text-sm text-brand-dark">Café</h3>
-                        <p class="text-xs text-gray-500 mt-0.5">Espresso o Americano.</p>
-                    </div>
-                    <div class="mt-3 pt-2 border-t border-gray-50 flex items-center justify-between">
-                        <span class="font-extrabold text-sm text-brand-red">$25</span>
-                        <div class="flex items-center bg-gray-100 rounded-lg p-0.5">
-                            <button onclick="updateQty('cafe', -1)" class="w-6 h-6 flex items-center justify-center bg-white rounded shadow-sm text-xs font-bold text-gray-700 active:scale-95">-</button>
-                            <span id="qty-cafe" class="w-6 text-center text-xs font-bold">0</span>
-                            <button onclick="updateQty('cafe', 1)" class="w-6 h-6 flex items-center justify-center bg-brand-yellow rounded shadow-sm text-xs font-bold text-brand-dark active:scale-95">+</button>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- Categoría: Postres -->
-        <section id="postres" class="category-section">
-            <div class="flex items-center gap-2 mb-3 border-b-2 border-brand-yellow pb-1">
-                <span class="text-xl">🍰</span>
-                <h2 class="text-lg font-bold uppercase tracking-wider text-brand-dark">Postres</h2>
-            </div>
-            <div class="grid grid-cols-2 gap-3 items-stretch">
-
-                <div class="item-card bg-brand-cardBg rounded-xl p-3 shadow-sm border border-gray-100 flex flex-col justify-between h-full" data-name="tiramisu">
-                    <div>
-                        <h3 class="font-bold text-sm text-brand-dark">Tiramisú</h3>
-                        <p class="text-xs text-gray-500 mt-0.5">Receta clásica italiana con café y mascarpone.</p>
-                    </div>
-                    <div class="mt-3 pt-2 border-t border-gray-50 flex items-center justify-between">
-                        <span class="font-extrabold text-sm text-brand-red">$55</span>
-                        <div class="flex items-center bg-gray-100 rounded-lg p-0.5">
-                            <button onclick="updateQty('tiramisu', -1)" class="w-6 h-6 flex items-center justify-center bg-white rounded shadow-sm text-xs font-bold text-gray-700 active:scale-95">-</button>
-                            <span id="qty-tiramisu" class="w-6 text-center text-xs font-bold">0</span>
-                            <button onclick="updateQty('tiramisu', 1)" class="w-6 h-6 flex items-center justify-center bg-brand-yellow rounded shadow-sm text-xs font-bold text-brand-dark active:scale-95">+</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="item-card bg-brand-cardBg rounded-xl p-3 shadow-sm border border-gray-100 flex flex-col justify-between h-full" data-name="helado de limon">
-                    <div>
-                        <h3 class="font-bold text-sm text-brand-dark">Helado de limón</h3>
-                        <p class="text-xs text-gray-500 mt-0.5">Refrescante sorbete artesanal.</p>
-                    </div>
-                    <div class="mt-3 pt-2 border-t border-gray-50 flex items-center justify-between">
-                        <span class="font-extrabold text-sm text-brand-red">$40</span>
-                        <div class="flex items-center bg-gray-100 rounded-lg p-0.5">
-                            <button onclick="updateQty('helado de limon', -1)" class="w-6 h-6 flex items-center justify-center bg-white rounded shadow-sm text-xs font-bold text-gray-700 active:scale-95">-</button>
-                            <span id="qty-helado de limon" class="w-6 text-center text-xs font-bold">0</span>
-                            <button onclick="updateQty('helado de limon', 1)" class="w-6 h-6 flex items-center justify-center bg-brand-yellow rounded shadow-sm text-xs font-bold text-brand-dark active:scale-95">+</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="item-card bg-brand-cardBg rounded-xl p-3 shadow-sm border border-gray-100 flex flex-col justify-between h-full" data-name="helado de chocolate">
-                    <div>
-                        <h3 class="font-bold text-sm text-brand-dark">Helado de chocolate</h3>
-                        <p class="text-xs text-gray-500 mt-0.5">Cremoso gelato de chocolate amargo.</p>
-                    </div>
-                    <div class="mt-3 pt-2 border-t border-gray-50 flex items-center justify-between">
-                        <span class="font-extrabold text-sm text-brand-red">$45</span>
-                        <div class="flex items-center bg-gray-100 rounded-lg p-0.5">
-                            <button onclick="updateQty('helado de chocolate', -1)" class="w-6 h-6 flex items-center justify-center bg-white rounded shadow-sm text-xs font-bold text-gray-700 active:scale-95">-</button>
-                            <span id="qty-helado de chocolate" class="w-6 text-center text-xs font-bold">0</span>
-                            <button onclick="updateQty('helado de chocolate', 1)" class="w-6 h-6 flex items-center justify-center bg-brand-yellow rounded shadow-sm text-xs font-bold text-brand-dark active:scale-95">+</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="item-card bg-brand-cardBg rounded-xl p-3 shadow-sm border border-gray-100 flex flex-col justify-between h-full" data-name="tarta de pistache">
-                    <div>
-                        <h3 class="font-bold text-sm text-brand-dark">Tarta de pistache</h3>
-                        <p class="text-xs text-gray-500 mt-0.5">Deliciosa tarta con crema de pistacho.</p>
-                    </div>
-                    <div class="mt-3 pt-2 border-t border-gray-50 flex items-center justify-between">
-                        <span class="font-extrabold text-sm text-brand-red">$75</span>
-                        <div class="flex items-center bg-gray-100 rounded-lg p-0.5">
-                            <button onclick="updateQty('tarta de pistache', -1)" class="w-6 h-6 flex items-center justify-center bg-white rounded shadow-sm text-xs font-bold text-gray-700 active:scale-95">-</button>
-                            <span id="qty-tarta de pistache" class="w-6 text-center text-xs font-bold">0</span>
-                            <button onclick="updateQty('tarta de pistache', 1)" class="w-6 h-6 flex items-center justify-center bg-brand-yellow rounded shadow-sm text-xs font-bold text-brand-dark active:scale-95">+</button>
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </section>
 
     </main>
 
-    <!-- Barra Flotante de Carrito / WhatsApp -->
-    <div class="fixed bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-white via-white/95 to-transparent z-50">
-        <div class="max-w-md mx-auto bg-brand-dark text-white rounded-2xl p-4 shadow-2xl border border-gray-800 flex items-center justify-between gap-3">
+    <!-- Bar de Total / Botón Flotante -->
+    <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4 shadow-lg z-50">
+        <div class="max-w-md mx-auto flex items-center justify-between">
             <div>
-                <div class="text-xs text-gray-400 font-medium">
-                    <span id="total-count" class="font-bold text-brand-yellow">0</span> items seleccionados
-                </div>
-                <div class="text-lg font-extrabold text-white">
-                    Total: <span id="total-price" class="text-brand-yellow">$0</span>
-                </div>
+                <p class="text-xs text-gray-500 font-semibold">Total a pagar:</p>
+                <p id="total-amount" class="text-xl font-extrabold text-brand-red">$0</p>
             </div>
-
-            <button 
-                onclick="sendWhatsAppOrder()" 
-                class="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2.5 rounded-xl font-bold text-xs flex items-center gap-2 shadow-lg transition active:scale-95">
-                <i class="fa-brands fa-whatsapp text-lg"></i>
-                <span>Enviar Pedido</span>
+            <button class="bg-brand-red hover:bg-brand-redDark text-white px-6 py-2.5 rounded-full font-bold text-sm transition shadow-md flex items-center gap-2">
+                <i class="fa-brands fa-whatsapp text-lg"></i> Pedir por WhatsApp
             </button>
         </div>
     </div>
 
-    <!-- JavaScript para lógica interactiva -->
+    <!-- JavaScript del Menú Interactivo -->
     <script>
-        // Datos de productos
-        const products = {
-            'margarita': { name: 'Pizza Margarita', price: 95 },
-            'cuatro quesos': { name: 'Pizza Cuatro quesos', price: 130 },
-            'vegetariana': { name: 'Pizza Vegetariana', price: 100 },
-            'pepperoni': { name: 'Pizza Pepperoni', price: 115 },
-            'napolitana': { name: 'Pizza Napolitana', price: 120 },
-            'carnivora': { name: 'Pizza Carnívora', price: 150 },
-            'picante': { name: 'Pizza Picante', price: 140 },
-            'hawaiana': { name: 'Pizza Hawaiana', price: 130 },
-
-            'al pesto': { name: 'Pasta Al pesto', price: 80 },
-            'a la boloñesa': { name: 'Pasta A la boloñesa', price: 90 },
-            'cuatro quesos pasta': { name: 'Pasta Cuatro quesos', price: 100 },
-            'alfredo': { name: 'Pasta Alfredo', price: 115 },
-            'con tomate fresco': { name: 'Pasta Con tomate fresco', price: 120 },
-            'con mariscos': { name: 'Pasta Con mariscos', price: 150 },
-            'con vegetales': { name: 'Pasta Con vegetales', price: 100 },
-            'con salsa picante': { name: 'Pasta Con salsa picante', price: 120 },
-
-            'refresco': { name: 'Refresco', price: 30 },
-            'limonada': { name: 'Limonada', price: 30 },
-            'agua': { name: 'Agua', price: 20 },
-            'cafe': { name: 'Café', price: 25 },
-
-            'tiramisu': { name: 'Tiramisú', price: 55 },
-            'helado de limon': { name: 'Helado de limón', price: 40 },
-            'helado de chocolate': { name: 'Helado de chocolate', price: 45 },
-            'tarta de pistache': { name: 'Tarta de pistache', price: 75 }
-        };
-
         const cart = {};
 
-        // Actualizar cantidades
-        function updateQty(id, change) {
-            const currentQty = cart[id] || 0;
-            const newQty = Math.max(0, currentQty + change);
+        function updateQty(itemId, change, price) {
+            if (!cart[itemId]) cart[itemId] = { qty: 0, price: price };
+            cart[itemId].qty += change;
+            if (cart[itemId].qty < 0) cart[itemId].qty = 0;
             
-            if (newQty === 0) {
-                delete cart[id];
-            } else {
-                cart[id] = newQty;
-            }
-
-            // Actualizar UI del item
-            const qtyElement = document.getElementById(`qty-${id}`);
-            if (qtyElement) {
-                qtyElement.innerText = newQty;
-            }
-
-            updateTotals();
+            const qtyElement = document.getElementById(`qty-${itemId}`);
+            if (qtyElement) qtyElement.innerText = cart[itemId].qty;
+            
+            calculateTotal();
         }
 
-        // Actualizar acumulador total
-        function updateTotals() {
-            let totalItems = 0;
-            let totalPrice = 0;
-
-            for (const [id, qty] of Object.entries(cart)) {
-                totalItems += qty;
-                totalPrice += qty * products[id].price;
+        function calculateTotal() {
+            let total = 0;
+            for (const key in cart) {
+                total += cart[key].qty * cart[key].price;
             }
-
-            document.getElementById('total-count').innerText = totalItems;
-            document.getElementById('total-price').innerText = `$${totalPrice}`;
+            document.getElementById('total-amount').innerText = `$${total}`;
         }
 
-        // Navegación suave por categorías
         function scrollToCategory(id) {
-            const section = document.getElementById(id);
-            if (section) {
-                const yOffset = -170; // Offset para compensar headers fijos
-                const y = section.getBoundingClientRect().top + window.pageYOffset + yOffset;
-                window.scrollTo({ top: y, behavior: 'smooth' });
-            }
+            const el = document.getElementById(id);
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
         }
 
-        // Filtro de búsqueda en tiempo real
         function filterMenu() {
-            const query = document.getElementById('search-input').value.toLowerCase().trim();
+            const query = document.getElementById('search-input').value.toLowerCase();
             const cards = document.querySelectorAll('.item-card');
-            const sections = document.querySelectorAll('.category-section');
-
             cards.forEach(card => {
                 const name = card.getAttribute('data-name');
                 if (name.includes(query)) {
@@ -616,45 +235,6 @@
                     card.style.display = 'none';
                 }
             });
-
-            // Ocultar categorías si no tienen elementos visibles
-            sections.forEach(section => {
-                const visibleCards = section.querySelectorAll('.item-card[style="display: flex;"], .item-card:not([style*="display: none"])');
-                if (visibleCards.length === 0 && query !== '') {
-                    section.style.display = 'none';
-                } else {
-                    section.style.display = 'block';
-                }
-            });
-        }
-
-        // Enviar pedido por WhatsApp
-        function sendWhatsAppOrder() {
-            const phoneNumber = "584120000000"; // Reemplazar por el número real del restaurante
-            const items = Object.entries(cart);
-
-            if (items.length === 0) {
-                alert("Por favor, selecciona al menos un producto para realizar tu pedido.");
-                return;
-            }
-
-            let message = "🍕 *NUEVO PEDIDO - PIZZERÍA BORCELLE* 🍕\n\n";
-            message += "Hola, me gustaría realizar el siguiente pedido:\n\n";
-
-            let total = 0;
-            items.forEach(([id, qty]) => {
-                const itemTotal = qty * products[id].price;
-                total += itemTotal;
-                message += `• ${qty}x ${products[id].name} - $${itemTotal}\n`;
-            });
-
-            message += `\n💰 *TOTAL A PAGAR: $${total}*\n\n`;
-            message += "📍 *Dirección de entrega:* (Escribe tu dirección aquí)\n";
-            message += "💳 *Método de pago:* (Efectivo / Transferencia)\n\n";
-            message += "¡Muchas gracias!";
-
-            const encodedMessage = encodeURIComponent(message);
-            window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
         }
     </script>
 </body>
