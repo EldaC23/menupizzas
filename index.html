@@ -28,14 +28,12 @@
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         
-        /* 1. Fondo con textura sutil */
         body {
             background-color: #FFF8ED;
             background-image: radial-gradient(circle, rgba(211,47,47,0.05) 1px, transparent 1px);
             background-size: 22px 22px;
         }
 
-        /* 4. Glow animado para el botón principal */
         @keyframes glowPulse {
             0%, 100% { box-shadow: 0 4px 14px rgba(211,47,47,0.35); }
             50% { box-shadow: 0 4px 22px rgba(211,47,47,0.6); }
@@ -45,9 +43,8 @@
 </head>
 <body class="text-gray-800 pb-24 font-sans antialiased">
 
-    <!-- SOLUCIÓN: Agrupamos Header y Menú en un solo contenedor sticky para evitar desajustes -->
+    <!-- Header y Menú Sticky -->
     <div class="sticky top-0 z-30">
-        <!-- Header Fijo -->
         <header class="bg-gradient-to-b from-brand-primary to-[#D99615] shadow-md px-4 pt-4 pb-3 relative z-10">
             <div class="text-center mb-3">
                 <h1 class="text-2xl font-black text-gray-900 tracking-wide uppercase">Pizzería Borcelle</h1>
@@ -63,7 +60,6 @@
 
         <!-- Filtro de Categorías -->
         <nav class="bg-white border-b border-gray-200 shadow-sm py-2 px-3">
-            <!-- SOLUCIÓN: Agregamos 'py-1 px-1' al contenedor flex para que la sombra no corte el botón -->
             <div class="flex space-x-2 overflow-x-auto no-scrollbar py-1 px-1" id="categoryTabs">
                 <button onclick="scrollToCategory('pizzas', this)" class="px-4 py-1.5 rounded-full text-xs font-bold bg-brand-primary text-gray-900 whitespace-nowrap shadow-[0_2px_8px_rgba(243,178,40,0.5)] border border-brand-primary">Pizzas</button>
                 <button onclick="scrollToCategory('pastas', this)" class="px-4 py-1.5 rounded-full text-xs font-bold bg-gray-100 text-gray-600 whitespace-nowrap border border-gray-200">Pastas</button>
@@ -76,13 +72,11 @@
     <!-- Contenido del Menú -->
     <main class="max-w-md mx-auto px-3 pt-4 space-y-6" id="menuContainer">
 
-        <!-- SOLUCIÓN: Añadimos 'scroll-mt-48' a todas las secciones. Esto compensa la altura del header fijo al hacer scroll -->
         <!-- Categoría: Pizzas -->
         <section id="pizzas" class="category-section scroll-mt-48">
             <h2 class="text-lg font-bold text-gray-900 mb-2 border-l-4 border-brand-secondary pl-2">Pizzas</h2>
             <div class="space-y-2">
-                <!-- 3. Cards con más presencia aplicada a cada ítem -->
-                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border border-gray-100/60 flex items-center justify-between transition-transform active:scale-[0.98]" data-name="margarita">
+                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border border-gray-100/60 flex items-center justify-between transition-transform active:scale-[0.98]" data-name="margarita" data-price="95">
                     <div>
                         <h3 class="font-bold text-gray-900 text-sm">Margarita</h3>
                         <p class="text-xs text-gray-500">Salsa de tomate, queso mozzarella y albahaca fresca</p>
@@ -91,13 +85,13 @@
                         <span class="block font-black text-brand-secondary text-sm mb-1">$95</span>
                         <div class="flex items-center space-x-2 bg-gray-100 rounded-md p-1">
                             <button onclick="updateQty('p1', -1)" class="w-6 h-6 flex items-center justify-center text-xs font-bold bg-white text-gray-700 rounded shadow-xs">-</button>
-                            <span id="qty-p1" class="text-xs font-bold w-4 text-center">0</span>
+                            <span id="qty-p1" class="qty-count text-xs font-bold w-4 text-center">0</span>
                             <button onclick="updateQty('p1', 1)" class="w-6 h-6 flex items-center justify-center text-xs font-bold bg-brand-primary text-gray-900 rounded shadow-xs">+</button>
                         </div>
                     </div>
                 </div>
 
-                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border border-gray-100/60 flex items-center justify-between transition-transform active:scale-[0.98]" data-name="cuatro quesos">
+                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border border-gray-100/60 flex items-center justify-between transition-transform active:scale-[0.98]" data-name="cuatro quesos" data-price="130">
                     <div>
                         <h3 class="font-bold text-gray-900 text-sm">Cuatro quesos</h3>
                         <p class="text-xs text-gray-500">Mozzarella, gorgonzola, parmesano y fontina</p>
@@ -106,13 +100,13 @@
                         <span class="block font-black text-brand-secondary text-sm mb-1">$130</span>
                         <div class="flex items-center space-x-2 bg-gray-100 rounded-md p-1">
                             <button onclick="updateQty('p2', -1)" class="w-6 h-6 flex items-center justify-center text-xs font-bold bg-white text-gray-700 rounded shadow-xs">-</button>
-                            <span id="qty-p2" class="text-xs font-bold w-4 text-center">0</span>
+                            <span id="qty-p2" class="qty-count text-xs font-bold w-4 text-center">0</span>
                             <button onclick="updateQty('p2', 1)" class="w-6 h-6 flex items-center justify-center text-xs font-bold bg-brand-primary text-gray-900 rounded shadow-xs">+</button>
                         </div>
                     </div>
                 </div>
 
-                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border border-gray-100/60 flex items-center justify-between transition-transform active:scale-[0.98]" data-name="vegetariana">
+                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border border-gray-100/60 flex items-center justify-between transition-transform active:scale-[0.98]" data-name="vegetariana" data-price="100">
                     <div>
                         <h3 class="font-bold text-gray-900 text-sm">Vegetariana</h3>
                         <p class="text-xs text-gray-500">Pimientos, cebolla, champiñones y aceitunas</p>
@@ -121,13 +115,13 @@
                         <span class="block font-black text-brand-secondary text-sm mb-1">$100</span>
                         <div class="flex items-center space-x-2 bg-gray-100 rounded-md p-1">
                             <button onclick="updateQty('p3', -1)" class="w-6 h-6 flex items-center justify-center text-xs font-bold bg-white text-gray-700 rounded shadow-xs">-</button>
-                            <span id="qty-p3" class="text-xs font-bold w-4 text-center">0</span>
+                            <span id="qty-p3" class="qty-count text-xs font-bold w-4 text-center">0</span>
                             <button onclick="updateQty('p3', 1)" class="w-6 h-6 flex items-center justify-center text-xs font-bold bg-brand-primary text-gray-900 rounded shadow-xs">+</button>
                         </div>
                     </div>
                 </div>
 
-                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border border-gray-100/60 flex items-center justify-between transition-transform active:scale-[0.98]" data-name="pepperoni">
+                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border border-gray-100/60 flex items-center justify-between transition-transform active:scale-[0.98]" data-name="pepperoni" data-price="115">
                     <div>
                         <h3 class="font-bold text-gray-900 text-sm">Pepperoni</h3>
                         <p class="text-xs text-gray-500">Salsa de tomate, mozzarella y rodajas de pepperoni</p>
@@ -136,13 +130,13 @@
                         <span class="block font-black text-brand-secondary text-sm mb-1">$115</span>
                         <div class="flex items-center space-x-2 bg-gray-100 rounded-md p-1">
                             <button onclick="updateQty('p4', -1)" class="w-6 h-6 flex items-center justify-center text-xs font-bold bg-white text-gray-700 rounded shadow-xs">-</button>
-                            <span id="qty-p4" class="text-xs font-bold w-4 text-center">0</span>
+                            <span id="qty-p4" class="qty-count text-xs font-bold w-4 text-center">0</span>
                             <button onclick="updateQty('p4', 1)" class="w-6 h-6 flex items-center justify-center text-xs font-bold bg-brand-primary text-gray-900 rounded shadow-xs">+</button>
                         </div>
                     </div>
                 </div>
 
-                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border border-gray-100/60 flex items-center justify-between transition-transform active:scale-[0.98]" data-name="napolitana">
+                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border border-gray-100/60 flex items-center justify-between transition-transform active:scale-[0.98]" data-name="napolitana" data-price="120">
                     <div>
                         <h3 class="font-bold text-gray-900 text-sm">Napolitana</h3>
                         <p class="text-xs text-gray-500">Tomate, mozzarella, anchoas y orégano</p>
@@ -151,13 +145,13 @@
                         <span class="block font-black text-brand-secondary text-sm mb-1">$120</span>
                         <div class="flex items-center space-x-2 bg-gray-100 rounded-md p-1">
                             <button onclick="updateQty('p5', -1)" class="w-6 h-6 flex items-center justify-center text-xs font-bold bg-white text-gray-700 rounded shadow-xs">-</button>
-                            <span id="qty-p5" class="text-xs font-bold w-4 text-center">0</span>
+                            <span id="qty-p5" class="qty-count text-xs font-bold w-4 text-center">0</span>
                             <button onclick="updateQty('p5', 1)" class="w-6 h-6 flex items-center justify-center text-xs font-bold bg-brand-primary text-gray-900 rounded shadow-xs">+</button>
                         </div>
                     </div>
                 </div>
 
-                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border border-gray-100/60 flex items-center justify-between transition-transform active:scale-[0.98]" data-name="carnivora">
+                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border border-gray-100/60 flex items-center justify-between transition-transform active:scale-[0.98]" data-name="carnivora" data-price="150">
                     <div>
                         <h3 class="font-bold text-gray-900 text-sm">Carnívora</h3>
                         <p class="text-xs text-gray-500">Jamón, tocino, carne molida y pepperoni</p>
@@ -166,13 +160,13 @@
                         <span class="block font-black text-brand-secondary text-sm mb-1">$150</span>
                         <div class="flex items-center space-x-2 bg-gray-100 rounded-md p-1">
                             <button onclick="updateQty('p6', -1)" class="w-6 h-6 flex items-center justify-center text-xs font-bold bg-white text-gray-700 rounded shadow-xs">-</button>
-                            <span id="qty-p6" class="text-xs font-bold w-4 text-center">0</span>
+                            <span id="qty-p6" class="qty-count text-xs font-bold w-4 text-center">0</span>
                             <button onclick="updateQty('p6', 1)" class="w-6 h-6 flex items-center justify-center text-xs font-bold bg-brand-primary text-gray-900 rounded shadow-xs">+</button>
                         </div>
                     </div>
                 </div>
 
-                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border border-gray-100/60 flex items-center justify-between transition-transform active:scale-[0.98]" data-name="picante">
+                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border border-gray-100/60 flex items-center justify-between transition-transform active:scale-[0.98]" data-name="picante" data-price="140">
                     <div>
                         <h3 class="font-bold text-gray-900 text-sm">Picante</h3>
                         <p class="text-xs text-gray-500">Salami picante, jalapeños y salsa especial</p>
@@ -181,13 +175,13 @@
                         <span class="block font-black text-brand-secondary text-sm mb-1">$140</span>
                         <div class="flex items-center space-x-2 bg-gray-100 rounded-md p-1">
                             <button onclick="updateQty('p7', -1)" class="w-6 h-6 flex items-center justify-center text-xs font-bold bg-white text-gray-700 rounded shadow-xs">-</button>
-                            <span id="qty-p7" class="text-xs font-bold w-4 text-center">0</span>
+                            <span id="qty-p7" class="qty-count text-xs font-bold w-4 text-center">0</span>
                             <button onclick="updateQty('p7', 1)" class="w-6 h-6 flex items-center justify-center text-xs font-bold bg-brand-primary text-gray-900 rounded shadow-xs">+</button>
                         </div>
                     </div>
                 </div>
 
-                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border border-gray-100/60 flex items-center justify-between transition-transform active:scale-[0.98]" data-name="hawaiana">
+                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border border-gray-100/60 flex items-center justify-between transition-transform active:scale-[0.98]" data-name="hawaiana" data-price="130">
                     <div>
                         <h3 class="font-bold text-gray-900 text-sm">Hawaiana</h3>
                         <p class="text-xs text-gray-500">Jamón, piña fresca y queso mozzarella</p>
@@ -196,7 +190,7 @@
                         <span class="block font-black text-brand-secondary text-sm mb-1">$130</span>
                         <div class="flex items-center space-x-2 bg-gray-100 rounded-md p-1">
                             <button onclick="updateQty('p8', -1)" class="w-6 h-6 flex items-center justify-center text-xs font-bold bg-white text-gray-700 rounded shadow-xs">-</button>
-                            <span id="qty-p8" class="text-xs font-bold w-4 text-center">0</span>
+                            <span id="qty-p8" class="qty-count text-xs font-bold w-4 text-center">0</span>
                             <button onclick="updateQty('p8', 1)" class="w-6 h-6 flex items-center justify-center text-xs font-bold bg-brand-primary text-gray-900 rounded shadow-xs">+</button>
                         </div>
                     </div>
@@ -208,7 +202,7 @@
         <section id="pastas" class="category-section scroll-mt-48">
             <h2 class="text-lg font-bold text-gray-900 mb-2 border-l-4 border-brand-secondary pl-2">Pastas</h2>
             <div class="space-y-2">
-                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border border-gray-100/60 flex items-center justify-between transition-transform active:scale-[0.98]" data-name="al pesto">
+                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border border-gray-100/60 flex items-center justify-between transition-transform active:scale-[0.98]" data-name="al pesto" data-price="80">
                     <div>
                         <h3 class="font-bold text-gray-900 text-sm">Al pesto</h3>
                         <p class="text-xs text-gray-500">Salsa tradicional de albahaca, piñones y parmesano</p>
@@ -217,13 +211,13 @@
                         <span class="block font-black text-brand-secondary text-sm mb-1">$80</span>
                         <div class="flex items-center space-x-2 bg-gray-100 rounded-md p-1">
                             <button onclick="updateQty('pas1', -1)" class="w-6 h-6 flex items-center justify-center text-xs font-bold bg-white text-gray-700 rounded shadow-xs">-</button>
-                            <span id="qty-pas1" class="text-xs font-bold w-4 text-center">0</span>
+                            <span id="qty-pas1" class="qty-count text-xs font-bold w-4 text-center">0</span>
                             <button onclick="updateQty('pas1', 1)" class="w-6 h-6 flex items-center justify-center text-xs font-bold bg-brand-primary text-gray-900 rounded shadow-xs">+</button>
                         </div>
                     </div>
                 </div>
 
-                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border border-gray-100/60 flex items-center justify-between transition-transform active:scale-[0.98]" data-name="a la boloñesa">
+                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border border-gray-100/60 flex items-center justify-between transition-transform active:scale-[0.98]" data-name="a la boloñesa" data-price="90">
                     <div>
                         <h3 class="font-bold text-gray-900 text-sm">A la boloñesa</h3>
                         <p class="text-xs text-gray-500">Salsa de carne molida de res y tomate estofado</p>
@@ -232,13 +226,13 @@
                         <span class="block font-black text-brand-secondary text-sm mb-1">$90</span>
                         <div class="flex items-center space-x-2 bg-gray-100 rounded-md p-1">
                             <button onclick="updateQty('pas2', -1)" class="w-6 h-6 flex items-center justify-center text-xs font-bold bg-white text-gray-700 rounded shadow-xs">-</button>
-                            <span id="qty-pas2" class="text-xs font-bold w-4 text-center">0</span>
+                            <span id="qty-pas2" class="qty-count text-xs font-bold w-4 text-center">0</span>
                             <button onclick="updateQty('pas2', 1)" class="w-6 h-6 flex items-center justify-center text-xs font-bold bg-brand-primary text-gray-900 rounded shadow-xs">+</button>
                         </div>
                     </div>
                 </div>
 
-                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border border-gray-100/60 flex items-center justify-between transition-transform active:scale-[0.98]" data-name="cuatro quesos pasta">
+                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border border-gray-100/60 flex items-center justify-between transition-transform active:scale-[0.98]" data-name="cuatro quesos pasta" data-price="100">
                     <div>
                         <h3 class="font-bold text-gray-900 text-sm">Cuatro quesos</h3>
                         <p class="text-xs text-gray-500">Salsa cremosa con cuatro quesos seleccionados</p>
@@ -247,13 +241,13 @@
                         <span class="block font-black text-brand-secondary text-sm mb-1">$100</span>
                         <div class="flex items-center space-x-2 bg-gray-100 rounded-md p-1">
                             <button onclick="updateQty('pas3', -1)" class="w-6 h-6 flex items-center justify-center text-xs font-bold bg-white text-gray-700 rounded shadow-xs">-</button>
-                            <span id="qty-pas3" class="text-xs font-bold w-4 text-center">0</span>
+                            <span id="qty-pas3" class="qty-count text-xs font-bold w-4 text-center">0</span>
                             <button onclick="updateQty('pas3', 1)" class="w-6 h-6 flex items-center justify-center text-xs font-bold bg-brand-primary text-gray-900 rounded shadow-xs">+</button>
                         </div>
                     </div>
                 </div>
 
-                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border border-gray-100/60 flex items-center justify-between transition-transform active:scale-[0.98]" data-name="alfredo">
+                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border border-gray-100/60 flex items-center justify-between transition-transform active:scale-[0.98]" data-name="alfredo" data-price="115">
                     <div>
                         <h3 class="font-bold text-gray-900 text-sm">Alfredo</h3>
                         <p class="text-xs text-gray-500">Salsa a base de crema, mantequilla y queso parmesano</p>
@@ -262,13 +256,13 @@
                         <span class="block font-black text-brand-secondary text-sm mb-1">$115</span>
                         <div class="flex items-center space-x-2 bg-gray-100 rounded-md p-1">
                             <button onclick="updateQty('pas4', -1)" class="w-6 h-6 flex items-center justify-center text-xs font-bold bg-white text-gray-700 rounded shadow-xs">-</button>
-                            <span id="qty-pas4" class="text-xs font-bold w-4 text-center">0</span>
+                            <span id="qty-pas4" class="qty-count text-xs font-bold w-4 text-center">0</span>
                             <button onclick="updateQty('pas4', 1)" class="w-6 h-6 flex items-center justify-center text-xs font-bold bg-brand-primary text-gray-900 rounded shadow-xs">+</button>
                         </div>
                     </div>
                 </div>
 
-                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border border-gray-100/60 flex items-center justify-between transition-transform active:scale-[0.98]" data-name="con tomate fresco">
+                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border border-gray-100/60 flex items-center justify-between transition-transform active:scale-[0.98]" data-name="con tomate fresco" data-price="120">
                     <div>
                         <h3 class="font-bold text-gray-900 text-sm">Con tomate fresco</h3>
                         <p class="text-xs text-gray-500">Tomates en cubos, ajo, aceite de oliva y albahaca</p>
@@ -277,13 +271,13 @@
                         <span class="block font-black text-brand-secondary text-sm mb-1">$120</span>
                         <div class="flex items-center space-x-2 bg-gray-100 rounded-md p-1">
                             <button onclick="updateQty('pas5', -1)" class="w-6 h-6 flex items-center justify-center text-xs font-bold bg-white text-gray-700 rounded shadow-xs">-</button>
-                            <span id="qty-pas5" class="text-xs font-bold w-4 text-center">0</span>
+                            <span id="qty-pas5" class="qty-count text-xs font-bold w-4 text-center">0</span>
                             <button onclick="updateQty('pas5', 1)" class="w-6 h-6 flex items-center justify-center text-xs font-bold bg-brand-primary text-gray-900 rounded shadow-xs">+</button>
                         </div>
                     </div>
                 </div>
 
-                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border border-gray-100/60 flex items-center justify-between transition-transform active:scale-[0.98]" data-name="con mariscos">
+                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border border-gray-100/60 flex items-center justify-between transition-transform active:scale-[0.98]" data-name="con mariscos" data-price="150">
                     <div>
                         <h3 class="font-bold text-gray-900 text-sm">Con mariscos</h3>
                         <p class="text-xs text-gray-500">Mezcla de mariscos salteados en vino blanco y tomate</p>
@@ -292,13 +286,13 @@
                         <span class="block font-black text-brand-secondary text-sm mb-1">$150</span>
                         <div class="flex items-center space-x-2 bg-gray-100 rounded-md p-1">
                             <button onclick="updateQty('pas6', -1)" class="w-6 h-6 flex items-center justify-center text-xs font-bold bg-white text-gray-700 rounded shadow-xs">-</button>
-                            <span id="qty-pas6" class="text-xs font-bold w-4 text-center">0</span>
+                            <span id="qty-pas6" class="qty-count text-xs font-bold w-4 text-center">0</span>
                             <button onclick="updateQty('pas6', 1)" class="w-6 h-6 flex items-center justify-center text-xs font-bold bg-brand-primary text-gray-900 rounded shadow-xs">+</button>
                         </div>
                     </div>
                 </div>
 
-                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border border-gray-100/60 flex items-center justify-between transition-transform active:scale-[0.98]" data-name="con vegetales">
+                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border border-gray-100/60 flex items-center justify-between transition-transform active:scale-[0.98]" data-name="con vegetales" data-price="100">
                     <div>
                         <h3 class="font-bold text-gray-900 text-sm">Con vegetales</h3>
                         <p class="text-xs text-gray-500">Vegetales de temporada salteados al sartén</p>
@@ -307,13 +301,13 @@
                         <span class="block font-black text-brand-secondary text-sm mb-1">$100</span>
                         <div class="flex items-center space-x-2 bg-gray-100 rounded-md p-1">
                             <button onclick="updateQty('pas7', -1)" class="w-6 h-6 flex items-center justify-center text-xs font-bold bg-white text-gray-700 rounded shadow-xs">-</button>
-                            <span id="qty-pas7" class="text-xs font-bold w-4 text-center">0</span>
+                            <span id="qty-pas7" class="qty-count text-xs font-bold w-4 text-center">0</span>
                             <button onclick="updateQty('pas7', 1)" class="w-6 h-6 flex items-center justify-center text-xs font-bold bg-brand-primary text-gray-900 rounded shadow-xs">+</button>
                         </div>
                     </div>
                 </div>
 
-                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border border-gray-100/60 flex items-center justify-between transition-transform active:scale-[0.98]" data-name="con salsa picante">
+                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border border-gray-100/60 flex items-center justify-between transition-transform active:scale-[0.98]" data-name="con salsa picante" data-price="120">
                     <div>
                         <h3 class="font-bold text-gray-900 text-sm">Con salsa picante</h3>
                         <p class="text-xs text-gray-500">Salsa de tomate arrabbiata con toque de chile</p>
@@ -322,7 +316,7 @@
                         <span class="block font-black text-brand-secondary text-sm mb-1">$120</span>
                         <div class="flex items-center space-x-2 bg-gray-100 rounded-md p-1">
                             <button onclick="updateQty('pas8', -1)" class="w-6 h-6 flex items-center justify-center text-xs font-bold bg-white text-gray-700 rounded shadow-xs">-</button>
-                            <span id="qty-pas8" class="text-xs font-bold w-4 text-center">0</span>
+                            <span id="qty-pas8" class="qty-count text-xs font-bold w-4 text-center">0</span>
                             <button onclick="updateQty('pas8', 1)" class="w-6 h-6 flex items-center justify-center text-xs font-bold bg-brand-primary text-gray-900 rounded shadow-xs">+</button>
                         </div>
                     </div>
@@ -334,7 +328,7 @@
         <section id="bebidas" class="category-section scroll-mt-48">
             <h2 class="text-lg font-bold text-gray-900 mb-2 border-l-4 border-brand-secondary pl-2">Bebidas</h2>
             <div class="space-y-2">
-                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border border-gray-100/60 flex items-center justify-between transition-transform active:scale-[0.98]" data-name="refresco">
+                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border border-gray-100/60 flex items-center justify-between transition-transform active:scale-[0.98]" data-name="refresco" data-price="30">
                     <div>
                         <h3 class="font-bold text-gray-900 text-sm">Refresco</h3>
                         <p class="text-xs text-gray-500">Lata 355ml (varios sabores)</p>
@@ -343,13 +337,13 @@
                         <span class="block font-black text-brand-secondary text-sm mb-1">$30</span>
                         <div class="flex items-center space-x-2 bg-gray-100 rounded-md p-1">
                             <button onclick="updateQty('b1', -1)" class="w-6 h-6 flex items-center justify-center text-xs font-bold bg-white text-gray-700 rounded shadow-xs">-</button>
-                            <span id="qty-b1" class="text-xs font-bold w-4 text-center">0</span>
+                            <span id="qty-b1" class="qty-count text-xs font-bold w-4 text-center">0</span>
                             <button onclick="updateQty('b1', 1)" class="w-6 h-6 flex items-center justify-center text-xs font-bold bg-brand-primary text-gray-900 rounded shadow-xs">+</button>
                         </div>
                     </div>
                 </div>
 
-                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border border-gray-100/60 flex items-center justify-between transition-transform active:scale-[0.98]" data-name="limonada">
+                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border border-gray-100/60 flex items-center justify-between transition-transform active:scale-[0.98]" data-name="limonada" data-price="30">
                     <div>
                         <h3 class="font-bold text-gray-900 text-sm">Limonada</h3>
                         <p class="text-xs text-gray-500">Natural e hecha al momento</p>
@@ -358,13 +352,13 @@
                         <span class="block font-black text-brand-secondary text-sm mb-1">$30</span>
                         <div class="flex items-center space-x-2 bg-gray-100 rounded-md p-1">
                             <button onclick="updateQty('b2', -1)" class="w-6 h-6 flex items-center justify-center text-xs font-bold bg-white text-gray-700 rounded shadow-xs">-</button>
-                            <span id="qty-b2" class="text-xs font-bold w-4 text-center">0</span>
+                            <span id="qty-b2" class="qty-count text-xs font-bold w-4 text-center">0</span>
                             <button onclick="updateQty('b2', 1)" class="w-6 h-6 flex items-center justify-center text-xs font-bold bg-brand-primary text-gray-900 rounded shadow-xs">+</button>
                         </div>
                     </div>
                 </div>
 
-                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border border-gray-100/60 flex items-center justify-between transition-transform active:scale-[0.98]" data-name="agua">
+                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border border-gray-100/60 flex items-center justify-between transition-transform active:scale-[0.98]" data-name="agua" data-price="20">
                     <div>
                         <h3 class="font-bold text-gray-900 text-sm">Agua</h3>
                         <p class="text-xs text-gray-500">Botella de 600ml</p>
@@ -373,13 +367,13 @@
                         <span class="block font-black text-brand-secondary text-sm mb-1">$20</span>
                         <div class="flex items-center space-x-2 bg-gray-100 rounded-md p-1">
                             <button onclick="updateQty('b3', -1)" class="w-6 h-6 flex items-center justify-center text-xs font-bold bg-white text-gray-700 rounded shadow-xs">-</button>
-                            <span id="qty-b3" class="text-xs font-bold w-4 text-center">0</span>
+                            <span id="qty-b3" class="qty-count text-xs font-bold w-4 text-center">0</span>
                             <button onclick="updateQty('b3', 1)" class="w-6 h-6 flex items-center justify-center text-xs font-bold bg-brand-primary text-gray-900 rounded shadow-xs">+</button>
                         </div>
                     </div>
                 </div>
 
-                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border border-gray-100/60 flex items-center justify-between transition-transform active:scale-[0.98]" data-name="cafe">
+                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border border-gray-100/60 flex items-center justify-between transition-transform active:scale-[0.98]" data-name="cafe" data-price="25">
                     <div>
                         <h3 class="font-bold text-gray-900 text-sm">Café</h3>
                         <p class="text-xs text-gray-500">Espresso o americano</p>
@@ -388,7 +382,7 @@
                         <span class="block font-black text-brand-secondary text-sm mb-1">$25</span>
                         <div class="flex items-center space-x-2 bg-gray-100 rounded-md p-1">
                             <button onclick="updateQty('b4', -1)" class="w-6 h-6 flex items-center justify-center text-xs font-bold bg-white text-gray-700 rounded shadow-xs">-</button>
-                            <span id="qty-b4" class="text-xs font-bold w-4 text-center">0</span>
+                            <span id="qty-b4" class="qty-count text-xs font-bold w-4 text-center">0</span>
                             <button onclick="updateQty('b4', 1)" class="w-6 h-6 flex items-center justify-center text-xs font-bold bg-brand-primary text-gray-900 rounded shadow-xs">+</button>
                         </div>
                     </div>
@@ -400,7 +394,7 @@
         <section id="postres" class="category-section scroll-mt-48">
             <h2 class="text-lg font-bold text-gray-900 mb-2 border-l-4 border-brand-secondary pl-2">Postres</h2>
             <div class="space-y-2">
-                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border border-gray-100/60 flex items-center justify-between transition-transform active:scale-[0.98]" data-name="tiramisu">
+                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border border-gray-100/60 flex items-center justify-between transition-transform active:scale-[0.98]" data-name="tiramisu" data-price="55">
                     <div>
                         <h3 class="font-bold text-gray-900 text-sm">Tiramisú</h3>
                         <p class="text-xs text-gray-500">Postre italiano con café y mascarpone</p>
@@ -409,13 +403,13 @@
                         <span class="block font-black text-brand-secondary text-sm mb-1">$55</span>
                         <div class="flex items-center space-x-2 bg-gray-100 rounded-md p-1">
                             <button onclick="updateQty('pos1', -1)" class="w-6 h-6 flex items-center justify-center text-xs font-bold bg-white text-gray-700 rounded shadow-xs">-</button>
-                            <span id="qty-pos1" class="text-xs font-bold w-4 text-center">0</span>
+                            <span id="qty-pos1" class="qty-count text-xs font-bold w-4 text-center">0</span>
                             <button onclick="updateQty('pos1', 1)" class="w-6 h-6 flex items-center justify-center text-xs font-bold bg-brand-primary text-gray-900 rounded shadow-xs">+</button>
                         </div>
                     </div>
                 </div>
 
-                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border border-gray-100/60 flex items-center justify-between transition-transform active:scale-[0.98]" data-name="helado de limon">
+                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border border-gray-100/60 flex items-center justify-between transition-transform active:scale-[0.98]" data-name="helado de limon" data-price="40">
                     <div>
                         <h3 class="font-bold text-gray-900 text-sm">Helado de limón</h3>
                         <p class="text-xs text-gray-500">Refrescante nieve artesanal</p>
@@ -424,13 +418,13 @@
                         <span class="block font-black text-brand-secondary text-sm mb-1">$40</span>
                         <div class="flex items-center space-x-2 bg-gray-100 rounded-md p-1">
                             <button onclick="updateQty('pos2', -1)" class="w-6 h-6 flex items-center justify-center text-xs font-bold bg-white text-gray-700 rounded shadow-xs">-</button>
-                            <span id="qty-pos2" class="text-xs font-bold w-4 text-center">0</span>
+                            <span id="qty-pos2" class="qty-count text-xs font-bold w-4 text-center">0</span>
                             <button onclick="updateQty('pos2', 1)" class="w-6 h-6 flex items-center justify-center text-xs font-bold bg-brand-primary text-gray-900 rounded shadow-xs">+</button>
                         </div>
                     </div>
                 </div>
 
-                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border border-gray-100/60 flex items-center justify-between transition-transform active:scale-[0.98]" data-name="helado de chocolate">
+                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border border-gray-100/60 flex items-center justify-between transition-transform active:scale-[0.98]" data-name="helado de chocolate" data-price="45">
                     <div>
                         <h3 class="font-bold text-gray-900 text-sm">Helado de chocolate</h3>
                         <p class="text-xs text-gray-500">Cremoso helado artesanal</p>
@@ -439,7 +433,7 @@
                         <span class="block font-black text-brand-secondary text-sm mb-1">$45</span>
                         <div class="flex items-center space-x-2 bg-gray-100 rounded-md p-1">
                             <button onclick="updateQty('pos3', -1)" class="w-6 h-6 flex items-center justify-center text-xs font-bold bg-white text-gray-700 rounded shadow-xs">-</button>
-                            <span id="qty-pos3" class="text-xs font-bold w-4 text-center">0</span>
+                            <span id="qty-pos3" class="qty-count text-xs font-bold w-4 text-center">0</span>
                             <button onclick="updateQty('pos3', 1)" class="w-6 h-6 flex items-center justify-center text-xs font-bold bg-brand-primary text-gray-900 rounded shadow-xs">+</button>
                         </div>
                     </div>
@@ -449,35 +443,32 @@
 
     </main>
 
-    <!-- Barra Inferior Fija para Ver Pedido (4. CTA con Glow Animado) -->
+    <!-- Barra Inferior Fija para Ver Pedido -->
     <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-3 shadow-[0_-4px_15px_rgba(0,0,0,0.05)] z-30">
         <div class="max-w-md mx-auto flex items-center justify-between">
             <div>
                 <span class="text-xs text-gray-500 block">Total estimado</span>
                 <span id="cartTotal" class="text-lg font-black text-gray-900">$0.00</span>
             </div>
-            <button onclick="openModal()" class="cta-glow bg-gradient-to-r from-brand-secondary to-[#B71C1C] text-white font-bold text-sm px-5 py-2.5 rounded-full hover:opacity-90 flex items-center space-x-2">
+            <button onclick="openModal()" class="cta-glow bg-gradient-to-r from-brand-secondary to-[#B71C1C] text-white font-bold text-sm px-5 py-2.5 rounded-full hover:opacity-90 flex items-center space-x-2 cursor-pointer">
                 <i class="fa-solid fa-cart-shopping"></i>
                 <span>Ver pedido</span>
             </button>
         </div>
     </div>
 
-    <!-- Scripts de Interactividad -->
+    <!-- Scripts de Interactividad y Cálculo del Total -->
     <script>
-        // Notar que ahora se pasa el botón a la función 'this'
         function scrollToCategory(categoryId, btnElement) {
             const element = document.getElementById(categoryId);
             if (element) {
                 element.scrollIntoView({ behavior: 'smooth' });
             }
             
-            // 5. Actualización de clases visuales en pestañas activas
             const buttons = document.querySelectorAll('#categoryTabs button');
             buttons.forEach(btn => {
                 btn.className = "px-4 py-1.5 rounded-full text-xs font-bold bg-gray-100 text-gray-600 whitespace-nowrap border border-gray-200";
             });
-            // Aplicamos las clases correctas al botón clicleado
             if (btnElement) {
                 btnElement.className = "px-4 py-1.5 rounded-full text-xs font-bold bg-brand-primary text-gray-900 whitespace-nowrap shadow-[0_2px_8px_rgba(243,178,40,0.5)] border border-brand-primary";
             }
@@ -503,11 +494,51 @@
                 let currentQty = parseInt(qtyElement.innerText);
                 currentQty = Math.max(0, currentQty + change);
                 qtyElement.innerText = currentQty;
+                
+                // Recalcular el total cada vez que cambia una cantidad
+                calculateTotal();
             }
         }
 
+        function calculateTotal() {
+            let total = 0;
+            const items = document.querySelectorAll('.product-item');
+            
+            items.forEach(item => {
+                const price = parseFloat(item.getAttribute('data-price')) || 0;
+                const qtyElement = item.querySelector('.qty-count');
+                if (qtyElement) {
+                    const qty = parseInt(qtyElement.innerText) || 0;
+                    total += price * qty;
+                }
+            });
+
+            document.getElementById('cartTotal').innerText = `$${total.toFixed(2)}`;
+        }
+
         function openModal() {
-            alert('Función de resumen de pedido en desarrollo');
+            let summary = "Tu pedido actual:\n\n";
+            let hasItems = false;
+            
+            const items = document.querySelectorAll('.product-item');
+            items.forEach(item => {
+                const name = item.querySelector('h3').innerText;
+                const price = item.getAttribute('data-price');
+                const qty = parseInt(item.querySelector('.qty-count').innerText) || 0;
+                
+                if (qty > 0) {
+                    summary += `- ${qty}x ${name} ($${price * qty})\n`;
+                    hasItems = true;
+                }
+            });
+
+            if (!hasItems) {
+                alert("Aún no has agregado ningún producto a tu pedido.");
+            } else {
+                const totalText = document.getElementById('cartTotal').innerText;
+                summary += `\nTotal: ${totalText}`;
+                alert(summary);
+            }
         }
     </script>
 </body>
