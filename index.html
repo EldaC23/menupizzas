@@ -27,12 +27,26 @@
     <style>
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        /* 1. Fondo con textura sutil */
+        body {
+            background-color: #FFF8ED;
+            background-image: radial-gradient(circle, rgba(211,47,47,0.05) 1px, transparent 1px);
+            background-size: 22px 22px;
+        }
+
+        /* 4. Glow animado para el botón principal */
+        @keyframes glowPulse {
+            0%, 100% { box-shadow: 0 4px 14px rgba(211,47,47,0.35); }
+            50% { box-shadow: 0 4px 22px rgba(211,47,47,0.6); }
+        }
+        .cta-glow { animation: glowPulse 2.2s ease-in-out infinite; }
     </style>
 </head>
-<body class="bg-brand-bg text-gray-800 pb-24 font-sans antialiased">
+<body class="text-gray-800 pb-24 font-sans antialiased">
 
-    <!-- Header Fijo -->
-    <header class="sticky top-0 z-30 bg-brand-primary shadow-md px-4 pt-4 pb-3">
+    <!-- Header Fijo (2. Gradiente aplicado) -->
+    <header class="sticky top-0 z-30 bg-gradient-to-b from-brand-primary to-[#D99615] shadow-lg px-4 pt-4 pb-3">
         <div class="text-center mb-3">
             <h1 class="text-2xl font-black text-gray-900 tracking-wide uppercase">Pizzería Borcelle</h1>
             <p class="text-xs text-gray-800 font-medium">La mejor pizza de la ciudad desde 2016</p>
@@ -45,10 +59,10 @@
         </div>
     </header>
 
-    <!-- Filtro de Categorías Sticky -->
+    <!-- Filtro de Categorías Sticky (5. Shadow mejorado en pestaña activa) -->
     <nav class="sticky top-[105px] z-20 bg-white border-b border-gray-200 shadow-sm py-2 px-3">
         <div class="flex space-x-2 overflow-x-auto no-scrollbar" id="categoryTabs">
-            <button onclick="scrollToCategory('pizzas')" class="px-4 py-1.5 rounded-full text-xs font-bold bg-brand-primary text-gray-900 whitespace-nowrap shadow-sm border border-brand-primary">Pizzas</button>
+            <button onclick="scrollToCategory('pizzas')" class="px-4 py-1.5 rounded-full text-xs font-bold bg-brand-primary text-gray-900 whitespace-nowrap shadow-[0_2px_8px_rgba(243,178,40,0.5)] border border-brand-primary">Pizzas</button>
             <button onclick="scrollToCategory('pastas')" class="px-4 py-1.5 rounded-full text-xs font-bold bg-gray-100 text-gray-600 whitespace-nowrap border border-gray-200">Pastas</button>
             <button onclick="scrollToCategory('bebidas')" class="px-4 py-1.5 rounded-full text-xs font-bold bg-gray-100 text-gray-600 whitespace-nowrap border border-gray-200">Bebidas</button>
             <button onclick="scrollToCategory('postres')" class="px-4 py-1.5 rounded-full text-xs font-bold bg-gray-100 text-gray-600 whitespace-nowrap border border-gray-200">Postres</button>
@@ -62,7 +76,8 @@
         <section id="pizzas" class="category-section">
             <h2 class="text-lg font-bold text-gray-900 mb-2 border-l-4 border-brand-secondary pl-2">Pizzas</h2>
             <div class="space-y-2">
-                <div class="product-item bg-white rounded-lg p-2.5 shadow-sm border border-gray-100 flex items-center justify-between" data-name="margarita">
+                <!-- 3. Cards con más presencia aplicada a cada ítem -->
+                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border border-gray-100/60 flex items-center justify-between transition-transform active:scale-[0.98]" data-name="margarita">
                     <div>
                         <h3 class="font-bold text-gray-900 text-sm">Margarita</h3>
                         <p class="text-xs text-gray-500">Salsa de tomate, queso mozzarella y albahaca fresca</p>
@@ -77,7 +92,7 @@
                     </div>
                 </div>
 
-                <div class="product-item bg-white rounded-lg p-2.5 shadow-sm border border-gray-100 flex items-center justify-between" data-name="cuatro quesos">
+                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border border-gray-100/60 flex items-center justify-between transition-transform active:scale-[0.98]" data-name="cuatro quesos">
                     <div>
                         <h3 class="font-bold text-gray-900 text-sm">Cuatro quesos</h3>
                         <p class="text-xs text-gray-500">Mozzarella, gorgonzola, parmesano y fontina</p>
@@ -92,7 +107,7 @@
                     </div>
                 </div>
 
-                <div class="product-item bg-white rounded-lg p-2.5 shadow-sm border border-gray-100 flex items-center justify-between" data-name="vegetariana">
+                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border border-gray-100/60 flex items-center justify-between transition-transform active:scale-[0.98]" data-name="vegetariana">
                     <div>
                         <h3 class="font-bold text-gray-900 text-sm">Vegetariana</h3>
                         <p class="text-xs text-gray-500">Pimientos, cebolla, champiñones y aceitunas</p>
@@ -107,7 +122,7 @@
                     </div>
                 </div>
 
-                <div class="product-item bg-white rounded-lg p-2.5 shadow-sm border border-gray-100 flex items-center justify-between" data-name="pepperoni">
+                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border border-gray-100/60 flex items-center justify-between transition-transform active:scale-[0.98]" data-name="pepperoni">
                     <div>
                         <h3 class="font-bold text-gray-900 text-sm">Pepperoni</h3>
                         <p class="text-xs text-gray-500">Salsa de tomate, mozzarella y rodajas de pepperoni</p>
@@ -122,7 +137,7 @@
                     </div>
                 </div>
 
-                <div class="product-item bg-white rounded-lg p-2.5 shadow-sm border border-gray-100 flex items-center justify-between" data-name="napolitana">
+                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border border-gray-100/60 flex items-center justify-between transition-transform active:scale-[0.98]" data-name="napolitana">
                     <div>
                         <h3 class="font-bold text-gray-900 text-sm">Napolitana</h3>
                         <p class="text-xs text-gray-500">Tomate, mozzarella, anchoas y orégano</p>
@@ -137,7 +152,7 @@
                     </div>
                 </div>
 
-                <div class="product-item bg-white rounded-lg p-2.5 shadow-sm border border-gray-100 flex items-center justify-between" data-name="carnivora">
+                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border border-gray-100/60 flex items-center justify-between transition-transform active:scale-[0.98]" data-name="carnivora">
                     <div>
                         <h3 class="font-bold text-gray-900 text-sm">Carnívora</h3>
                         <p class="text-xs text-gray-500">Jamón, tocino, carne molida y pepperoni</p>
@@ -152,7 +167,7 @@
                     </div>
                 </div>
 
-                <div class="product-item bg-white rounded-lg p-2.5 shadow-sm border border-gray-100 flex items-center justify-between" data-name="picante">
+                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border border-gray-100/60 flex items-center justify-between transition-transform active:scale-[0.98]" data-name="picante">
                     <div>
                         <h3 class="font-bold text-gray-900 text-sm">Picante</h3>
                         <p class="text-xs text-gray-500">Salami picante, jalapeños y salsa especial</p>
@@ -167,7 +182,7 @@
                     </div>
                 </div>
 
-                <div class="product-item bg-white rounded-lg p-2.5 shadow-sm border border-gray-100 flex items-center justify-between" data-name="hawaiana">
+                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border border-gray-100/60 flex items-center justify-between transition-transform active:scale-[0.98]" data-name="hawaiana">
                     <div>
                         <h3 class="font-bold text-gray-900 text-sm">Hawaiana</h3>
                         <p class="text-xs text-gray-500">Jamón, piña fresca y queso mozzarella</p>
@@ -188,7 +203,7 @@
         <section id="pastas" class="category-section">
             <h2 class="text-lg font-bold text-gray-900 mb-2 border-l-4 border-brand-secondary pl-2">Pastas</h2>
             <div class="space-y-2">
-                <div class="product-item bg-white rounded-lg p-2.5 shadow-sm border border-gray-100 flex items-center justify-between" data-name="al pesto">
+                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border border-gray-100/60 flex items-center justify-between transition-transform active:scale-[0.98]" data-name="al pesto">
                     <div>
                         <h3 class="font-bold text-gray-900 text-sm">Al pesto</h3>
                         <p class="text-xs text-gray-500">Salsa tradicional de albahaca, piñones y parmesano</p>
@@ -203,7 +218,7 @@
                     </div>
                 </div>
 
-                <div class="product-item bg-white rounded-lg p-2.5 shadow-sm border border-gray-100 flex items-center justify-between" data-name="a la boloñesa">
+                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border border-gray-100/60 flex items-center justify-between transition-transform active:scale-[0.98]" data-name="a la boloñesa">
                     <div>
                         <h3 class="font-bold text-gray-900 text-sm">A la boloñesa</h3>
                         <p class="text-xs text-gray-500">Salsa de carne molida de res y tomate estofado</p>
@@ -218,7 +233,7 @@
                     </div>
                 </div>
 
-                <div class="product-item bg-white rounded-lg p-2.5 shadow-sm border border-gray-100 flex items-center justify-between" data-name="cuatro quesos pasta">
+                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border border-gray-100/60 flex items-center justify-between transition-transform active:scale-[0.98]" data-name="cuatro quesos pasta">
                     <div>
                         <h3 class="font-bold text-gray-900 text-sm">Cuatro quesos</h3>
                         <p class="text-xs text-gray-500">Salsa cremosa con cuatro quesos seleccionados</p>
@@ -233,7 +248,7 @@
                     </div>
                 </div>
 
-                <div class="product-item bg-white rounded-lg p-2.5 shadow-sm border border-gray-100 flex items-center justify-between" data-name="alfredo">
+                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border border-gray-100/60 flex items-center justify-between transition-transform active:scale-[0.98]" data-name="alfredo">
                     <div>
                         <h3 class="font-bold text-gray-900 text-sm">Alfredo</h3>
                         <p class="text-xs text-gray-500">Salsa a base de crema, mantequilla y queso parmesano</p>
@@ -248,7 +263,7 @@
                     </div>
                 </div>
 
-                <div class="product-item bg-white rounded-lg p-2.5 shadow-sm border border-gray-100 flex items-center justify-between" data-name="con tomate fresco">
+                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border border-gray-100/60 flex items-center justify-between transition-transform active:scale-[0.98]" data-name="con tomate fresco">
                     <div>
                         <h3 class="font-bold text-gray-900 text-sm">Con tomate fresco</h3>
                         <p class="text-xs text-gray-500">Tomates en cubos, ajo, aceite de oliva y albahaca</p>
@@ -263,7 +278,7 @@
                     </div>
                 </div>
 
-                <div class="product-item bg-white rounded-lg p-2.5 shadow-sm border border-gray-100 flex items-center justify-between" data-name="con mariscos">
+                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border border-gray-100/60 flex items-center justify-between transition-transform active:scale-[0.98]" data-name="con mariscos">
                     <div>
                         <h3 class="font-bold text-gray-900 text-sm">Con mariscos</h3>
                         <p class="text-xs text-gray-500">Mezcla de mariscos salteados en vino blanco y tomate</p>
@@ -278,7 +293,7 @@
                     </div>
                 </div>
 
-                <div class="product-item bg-white rounded-lg p-2.5 shadow-sm border border-gray-100 flex items-center justify-between" data-name="con vegetales">
+                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border border-gray-100/60 flex items-center justify-between transition-transform active:scale-[0.98]" data-name="con vegetales">
                     <div>
                         <h3 class="font-bold text-gray-900 text-sm">Con vegetales</h3>
                         <p class="text-xs text-gray-500">Vegetales de temporada salteados al sartén</p>
@@ -293,7 +308,7 @@
                     </div>
                 </div>
 
-                <div class="product-item bg-white rounded-lg p-2.5 shadow-sm border border-gray-100 flex items-center justify-between" data-name="con salsa picante">
+                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border border-gray-100/60 flex items-center justify-between transition-transform active:scale-[0.98]" data-name="con salsa picante">
                     <div>
                         <h3 class="font-bold text-gray-900 text-sm">Con salsa picante</h3>
                         <p class="text-xs text-gray-500">Salsa de tomate arrabbiata con toque de chile</p>
@@ -314,7 +329,7 @@
         <section id="bebidas" class="category-section">
             <h2 class="text-lg font-bold text-gray-900 mb-2 border-l-4 border-brand-secondary pl-2">Bebidas</h2>
             <div class="space-y-2">
-                <div class="product-item bg-white rounded-lg p-2.5 shadow-sm border border-gray-100 flex items-center justify-between" data-name="refresco">
+                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border border-gray-100/60 flex items-center justify-between transition-transform active:scale-[0.98]" data-name="refresco">
                     <div>
                         <h3 class="font-bold text-gray-900 text-sm">Refresco</h3>
                         <p class="text-xs text-gray-500">Lata 355ml (varios sabores)</p>
@@ -329,7 +344,7 @@
                     </div>
                 </div>
 
-                <div class="product-item bg-white rounded-lg p-2.5 shadow-sm border border-gray-100 flex items-center justify-between" data-name="limonada">
+                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border border-gray-100/60 flex items-center justify-between transition-transform active:scale-[0.98]" data-name="limonada">
                     <div>
                         <h3 class="font-bold text-gray-900 text-sm">Limonada</h3>
                         <p class="text-xs text-gray-500">Natural e hecha al momento</p>
@@ -344,7 +359,7 @@
                     </div>
                 </div>
 
-                <div class="product-item bg-white rounded-lg p-2.5 shadow-sm border border-gray-100 flex items-center justify-between" data-name="agua">
+                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border border-gray-100/60 flex items-center justify-between transition-transform active:scale-[0.98]" data-name="agua">
                     <div>
                         <h3 class="font-bold text-gray-900 text-sm">Agua</h3>
                         <p class="text-xs text-gray-500">Botella de 600ml</p>
@@ -359,7 +374,7 @@
                     </div>
                 </div>
 
-                <div class="product-item bg-white rounded-lg p-2.5 shadow-sm border border-gray-100 flex items-center justify-between" data-name="cafe">
+                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border border-gray-100/60 flex items-center justify-between transition-transform active:scale-[0.98]" data-name="cafe">
                     <div>
                         <h3 class="font-bold text-gray-900 text-sm">Café</h3>
                         <p class="text-xs text-gray-500">Espresso o americano</p>
@@ -380,7 +395,7 @@
         <section id="postres" class="category-section">
             <h2 class="text-lg font-bold text-gray-900 mb-2 border-l-4 border-brand-secondary pl-2">Postres</h2>
             <div class="space-y-2">
-                <div class="product-item bg-white rounded-lg p-2.5 shadow-sm border border-gray-100 flex items-center justify-between" data-name="tiramisu">
+                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border border-gray-100/60 flex items-center justify-between transition-transform active:scale-[0.98]" data-name="tiramisu">
                     <div>
                         <h3 class="font-bold text-gray-900 text-sm">Tiramisú</h3>
                         <p class="text-xs text-gray-500">Postre italiano con café y mascarpone</p>
@@ -395,7 +410,7 @@
                     </div>
                 </div>
 
-                <div class="product-item bg-white rounded-lg p-2.5 shadow-sm border border-gray-100 flex items-center justify-between" data-name="helado de limon">
+                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border border-gray-100/60 flex items-center justify-between transition-transform active:scale-[0.98]" data-name="helado de limon">
                     <div>
                         <h3 class="font-bold text-gray-900 text-sm">Helado de limón</h3>
                         <p class="text-xs text-gray-500">Refrescante nieve artesanal</p>
@@ -410,7 +425,7 @@
                     </div>
                 </div>
 
-                <div class="product-item bg-white rounded-lg p-2.5 shadow-sm border border-gray-100 flex items-center justify-between" data-name="helado de chocolate">
+                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border border-gray-100/60 flex items-center justify-between transition-transform active:scale-[0.98]" data-name="helado de chocolate">
                     <div>
                         <h3 class="font-bold text-gray-900 text-sm">Helado de chocolate</h3>
                         <p class="text-xs text-gray-500">Cremoso helado artesanal</p>
@@ -424,161 +439,45 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="product-item bg-white rounded-lg p-2.5 shadow-sm border border-gray-100 flex items-center justify-between" data-name="tarta de pistache">
-                    <div>
-                        <h3 class="font-bold text-gray-900 text-sm">Tarta de pistache</h3>
-                        <p class="text-xs text-gray-500">Deliciosa tarta de la casa con pistache</p>
-                    </div>
-                    <div class="text-right ml-3 flex-shrink-0">
-                        <span class="block font-black text-brand-secondary text-sm mb-1">$75</span>
-                        <div class="flex items-center space-x-2 bg-gray-100 rounded-md p-1">
-                            <button onclick="updateQty('pos4', -1)" class="w-6 h-6 flex items-center justify-center text-xs font-bold bg-white text-gray-700 rounded shadow-xs">-</button>
-                            <span id="qty-pos4" class="text-xs font-bold w-4 text-center">0</span>
-                            <button onclick="updateQty('pos4', 1)" class="w-6 h-6 flex items-center justify-center text-xs font-bold bg-brand-primary text-gray-900 rounded shadow-xs">+</button>
-                        </div>
-                    </div>
-                </div>
             </div>
         </section>
 
     </main>
 
-    <!-- Barra Inferior Flotante -->
-    <div id="bottomBar" class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-3 shadow-lg flex items-center justify-between z-30 transition-transform duration-300 translate-y-full">
-        <div>
-            <span class="text-xs text-gray-500 font-medium block">Total Pedido</span>
-            <span id="totalAmount" class="text-lg font-black text-brand-secondary">$0</span>
-        </div>
-        <button onclick="openModal()" class="bg-brand-secondary text-white font-bold text-sm px-5 py-2.5 rounded-full shadow-md hover:opacity-90 flex items-center space-x-2">
-            <i class="fa-solid fa-shopping-basket"></i>
-            <span>Ver pedido (<span id="cartCount">0</span>)</span>
-        </button>
-    </div>
-
-    <!-- Modal de Revisión de Pedido -->
-    <div id="orderModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-end sm:items-center justify-center hidden">
-        <div class="bg-white w-full max-w-md rounded-t-2xl sm:rounded-2xl p-4 max-h-[85vh] flex flex-col shadow-2xl">
-            <div class="flex justify-between items-center pb-3 border-b border-gray-100">
-                <h3 class="text-base font-bold text-gray-900 flex items-center space-x-2">
-                    <i class="fa-solid fa-receipt text-brand-secondary"></i>
-                    <span>Resumen de tu Pedido</span>
-                </h3>
-                <button onclick="closeModal()" class="text-gray-400 text-lg hover:text-gray-600 px-2">&times;</button>
+    <!-- Barra Inferior Fija para Ver Pedido (4. CTA con Glow Animado) -->
+    <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-3 shadow-lg z-30">
+        <div class="max-w-md mx-auto flex items-center justify-between">
+            <div>
+                <span class="text-xs text-gray-500 block">Total estimado</span>
+                <span id="cartTotal" class="text-lg font-black text-gray-900">$0.00</span>
             </div>
-
-            <!-- Lista de items en carrito -->
-            <div id="modalItems" class="overflow-y-auto my-3 space-y-2 flex-1 pr-1">
-                <!-- Se poblará dinámicamente -->
-            </div>
-
-            <div class="pt-3 border-t border-gray-100 space-y-3">
-                <div class="flex justify-between items-center">
-                    <span class="text-sm font-bold text-gray-700">Total a Pagar:</span>
-                    <span id="modalTotal" class="text-xl font-black text-brand-secondary">$0</span>
-                </div>
-                <button onclick="sendToWhatsApp()" class="w-full bg-green-600 text-white font-bold py-3 rounded-xl shadow-md flex items-center justify-center space-x-2 hover:bg-green-700">
-                    <i class="fa-brands fa-whatsapp text-xl"></i>
-                    <span>Enviar pedido a WhatsApp</span>
-                </button>
-            </div>
+            <button onclick="openModal()" class="cta-glow bg-gradient-to-r from-brand-secondary to-[#B71C1C] text-white font-bold text-sm px-5 py-2.5 rounded-full hover:opacity-90 flex items-center space-x-2">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span>Ver pedido</span>
+            </button>
         </div>
     </div>
 
-    <!-- JavaScript Vanilla -->
+    <!-- Scripts de Interactividad -->
     <script>
-        const productsData = {
-            'p1': { name: 'Margarita', price: 95 },
-            'p2': { name: 'Cuatro quesos', price: 130 },
-            'p3': { name: 'Vegetariana', price: 100 },
-            'p4': { name: 'Pepperoni', price: 115 },
-            'p5': { name: 'Napolitana', price: 120 },
-            'p6': { name: 'Carnívora', price: 150 },
-            'p7': { name: 'Picante', price: 140 },
-            'p8': { name: 'Hawaiana', price: 130 },
-
-            'pas1': { name: 'Pasta Al pesto', price: 80 },
-            'pas2': { name: 'Pasta A la boloñesa', price: 90 },
-            'pas3': { name: 'Pasta Cuatro quesos', price: 100 },
-            'pas4': { name: 'Pasta Alfredo', price: 115 },
-            'pas5': { name: 'Pasta Con tomate fresco', price: 120 },
-            'pas6': { name: 'Pasta Con mariscos', price: 150 },
-            'pas7': { name: 'Pasta Con vegetales', price: 100 },
-            'pas8': { name: 'Pasta Con salsa picante', price: 120 },
-
-            'b1': { name: 'Refresco', price: 30 },
-            'b2': { name: 'Limonada', price: 30 },
-            'b3': { name: 'Agua', price: 20 },
-            'b4': { name: 'Café', price: 25 },
-
-            'pos1': { name: 'Tiramisú', price: 55 },
-            'pos2': { name: 'Helado de limón', price: 40 },
-            'pos3': { name: 'Helado de chocolate', price: 45 },
-            'pos4': { name: 'Tarta de pistache', price: 75 }
-        };
-
-        const cart = {};
-
-        function updateQty(id, change) {
-            const currentQty = cart[id] || 0;
-            const newQty = Math.max(0, currentQty + change);
+        function scrollToCategory(categoryId) {
+            const element = document.getElementById(categoryId);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
             
-            if (newQty === 0) {
-                delete cart[id];
-            } else {
-                cart[id] = newQty;
-            }
-
-            const qtyElem = document.getElementById(`qty-${id}`);
-            if (qtyElem) qtyElem.innerText = newQty;
-
-            renderCartSummary();
-            if (!document.getElementById('orderModal').classList.contains('hidden')) {
-                renderModalItems();
-            }
-        }
-
-        function renderCartSummary() {
-            let total = 0;
-            let count = 0;
-
-            for (const [id, qty] of Object.entries(cart)) {
-                total += productsData[id].price * qty;
-                count += qty;
-            }
-
-            document.getElementById('totalAmount').innerText = `$${total}`;
-            document.getElementById('cartCount').innerText = count;
-
-            const bottomBar = document.getElementById('bottomBar');
-            if (count > 0) {
-                bottomBar.classList.remove('translate-y-full');
-            } else {
-                bottomBar.classList.add('translate-y-full');
-                closeModal();
-            }
-        }
-
-        function scrollToCategory(catId) {
-            const el = document.getElementById(catId);
-            if (el) {
-                const yOffset = -150; 
-                const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
-                window.scrollTo({ top: y, behavior: 'smooth' });
-            }
-
-            // Actualizar estilo del botón seleccionado
+            // 5. Actualización de clases visuales en pestañas activas
             const buttons = document.querySelectorAll('#categoryTabs button');
             buttons.forEach(btn => {
                 btn.className = "px-4 py-1.5 rounded-full text-xs font-bold bg-gray-100 text-gray-600 whitespace-nowrap border border-gray-200";
             });
-            event.currentTarget.className = "px-4 py-1.5 rounded-full text-xs font-bold bg-brand-primary text-gray-900 whitespace-nowrap shadow-sm border border-brand-primary";
+            event.currentTarget.className = "px-4 py-1.5 rounded-full text-xs font-bold bg-brand-primary text-gray-900 whitespace-nowrap shadow-[0_2px_8px_rgba(243,178,40,0.5)] border border-brand-primary";
         }
 
         function filterProducts() {
             const query = document.getElementById('searchInput').value.toLowerCase();
             const items = document.querySelectorAll('.product-item');
-
+            
             items.forEach(item => {
                 const name = item.getAttribute('data-name');
                 if (name.includes(query)) {
@@ -589,61 +488,17 @@
             });
         }
 
+        function updateQty(id, change) {
+            const qtyElement = document.getElementById(`qty-${id}`);
+            if (qtyElement) {
+                let currentQty = parseInt(qtyElement.innerText);
+                currentQty = Math.max(0, currentQty + change);
+                qtyElement.innerText = currentQty;
+            }
+        }
+
         function openModal() {
-            renderModalItems();
-            document.getElementById('orderModal').classList.remove('hidden');
-        }
-
-        function closeModal() {
-            document.getElementById('orderModal').classList.add('hidden');
-        }
-
-        function renderModalItems() {
-            const container = document.getElementById('modalItems');
-            container.innerHTML = '';
-            let total = 0;
-
-            for (const [id, qty] of Object.entries(cart)) {
-                const item = productsData[id];
-                const itemTotal = item.price * qty;
-                total += itemTotal;
-
-                const div = document.createElement('div');
-                div.className = 'flex justify-between items-center bg-gray-50 p-2.5 rounded-lg border border-gray-100 text-xs';
-                div.innerHTML = `
-                    <div class="flex-1">
-                        <span class="font-bold text-gray-800 block">${item.name}</span>
-                        <span class="text-gray-500">$${item.price} c/u</span>
-                    </div>
-                    <div class="flex items-center space-x-2">
-                        <button onclick="updateQty('${id}', -1)" class="w-5 h-5 flex items-center justify-center font-bold bg-white text-gray-700 rounded border border-gray-200">-</button>
-                        <span class="font-bold w-4 text-center">${qty}</span>
-                        <button onclick="updateQty('${id}', 1)" class="w-5 h-5 flex items-center justify-center font-bold bg-brand-primary text-gray-900 rounded">+</button>
-                    </div>
-                    <span class="font-bold text-brand-secondary w-12 text-right">$${itemTotal}</span>
-                `;
-                container.appendChild(div);
-            }
-
-            document.getElementById('modalTotal').innerText = `$${total}`;
-        }
-
-        function sendToWhatsApp() {
-            let total = 0;
-            let message = "Hola *Pizzería Borcelle*, me gustaría hacer el siguiente pedido:\n\n";
-
-            for (const [id, qty] of Object.entries(cart)) {
-                const item = productsData[id];
-                const subtotal = item.price * qty;
-                total += subtotal;
-                message += `• ${qty}x ${item.name} ($${subtotal})\n`;
-            }
-
-            message += `\n*Total a pagar: $${total}*`;
-
-            const encodedMessage = encodeURIComponent(message);
-            // Reemplazar con el número real de WhatsApp del negocio si aplica
-            window.open(`https://wa.me/?text=${encodedMessage}`, '_blank');
+            alert('Función de resumen de pedido en desarrollo');
         }
     </script>
 </body>
