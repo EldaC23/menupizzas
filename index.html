@@ -45,35 +45,40 @@
 </head>
 <body class="text-gray-800 pb-24 font-sans antialiased">
 
-    <!-- Header Fijo (2. Gradiente aplicado) -->
-    <header class="sticky top-0 z-30 bg-gradient-to-b from-brand-primary to-[#D99615] shadow-lg px-4 pt-4 pb-3">
-        <div class="text-center mb-3">
-            <h1 class="text-2xl font-black text-gray-900 tracking-wide uppercase">Pizzería Borcelle</h1>
-            <p class="text-xs text-gray-800 font-medium">La mejor pizza de la ciudad desde 2016</p>
-        </div>
-        <!-- Input de Búsqueda -->
-        <div class="relative">
-            <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i>
-            <input type="text" id="searchInput" oninput="filterProducts()" placeholder="Buscar pizza, pasta, bebida..." 
-                   class="w-full pl-9 pr-4 py-2 text-sm bg-white rounded-full border-none shadow-inner focus:outline-none focus:ring-2 focus:ring-brand-secondary">
-        </div>
-    </header>
+    <!-- SOLUCIÓN: Agrupamos Header y Menú en un solo contenedor sticky para evitar desajustes -->
+    <div class="sticky top-0 z-30">
+        <!-- Header Fijo -->
+        <header class="bg-gradient-to-b from-brand-primary to-[#D99615] shadow-md px-4 pt-4 pb-3 relative z-10">
+            <div class="text-center mb-3">
+                <h1 class="text-2xl font-black text-gray-900 tracking-wide uppercase">Pizzería Borcelle</h1>
+                <p class="text-xs text-gray-800 font-medium">La mejor pizza de la ciudad desde 2016</p>
+            </div>
+            <!-- Input de Búsqueda -->
+            <div class="relative">
+                <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i>
+                <input type="text" id="searchInput" oninput="filterProducts()" placeholder="Buscar pizza, pasta, bebida..." 
+                       class="w-full pl-9 pr-4 py-2 text-sm bg-white rounded-full border-none shadow-inner focus:outline-none focus:ring-2 focus:ring-brand-secondary">
+            </div>
+        </header>
 
-    <!-- Filtro de Categorías Sticky (5. Shadow mejorado en pestaña activa) -->
-    <nav class="sticky top-[105px] z-20 bg-white border-b border-gray-200 shadow-sm py-2 px-3">
-        <div class="flex space-x-2 overflow-x-auto no-scrollbar" id="categoryTabs">
-            <button onclick="scrollToCategory('pizzas')" class="px-4 py-1.5 rounded-full text-xs font-bold bg-brand-primary text-gray-900 whitespace-nowrap shadow-[0_2px_8px_rgba(243,178,40,0.5)] border border-brand-primary">Pizzas</button>
-            <button onclick="scrollToCategory('pastas')" class="px-4 py-1.5 rounded-full text-xs font-bold bg-gray-100 text-gray-600 whitespace-nowrap border border-gray-200">Pastas</button>
-            <button onclick="scrollToCategory('bebidas')" class="px-4 py-1.5 rounded-full text-xs font-bold bg-gray-100 text-gray-600 whitespace-nowrap border border-gray-200">Bebidas</button>
-            <button onclick="scrollToCategory('postres')" class="px-4 py-1.5 rounded-full text-xs font-bold bg-gray-100 text-gray-600 whitespace-nowrap border border-gray-200">Postres</button>
-        </div>
-    </nav>
+        <!-- Filtro de Categorías -->
+        <nav class="bg-white border-b border-gray-200 shadow-sm py-2 px-3">
+            <!-- SOLUCIÓN: Agregamos 'py-1 px-1' al contenedor flex para que la sombra no corte el botón -->
+            <div class="flex space-x-2 overflow-x-auto no-scrollbar py-1 px-1" id="categoryTabs">
+                <button onclick="scrollToCategory('pizzas', this)" class="px-4 py-1.5 rounded-full text-xs font-bold bg-brand-primary text-gray-900 whitespace-nowrap shadow-[0_2px_8px_rgba(243,178,40,0.5)] border border-brand-primary">Pizzas</button>
+                <button onclick="scrollToCategory('pastas', this)" class="px-4 py-1.5 rounded-full text-xs font-bold bg-gray-100 text-gray-600 whitespace-nowrap border border-gray-200">Pastas</button>
+                <button onclick="scrollToCategory('bebidas', this)" class="px-4 py-1.5 rounded-full text-xs font-bold bg-gray-100 text-gray-600 whitespace-nowrap border border-gray-200">Bebidas</button>
+                <button onclick="scrollToCategory('postres', this)" class="px-4 py-1.5 rounded-full text-xs font-bold bg-gray-100 text-gray-600 whitespace-nowrap border border-gray-200">Postres</button>
+            </div>
+        </nav>
+    </div>
 
     <!-- Contenido del Menú -->
     <main class="max-w-md mx-auto px-3 pt-4 space-y-6" id="menuContainer">
 
+        <!-- SOLUCIÓN: Añadimos 'scroll-mt-48' a todas las secciones. Esto compensa la altura del header fijo al hacer scroll -->
         <!-- Categoría: Pizzas -->
-        <section id="pizzas" class="category-section">
+        <section id="pizzas" class="category-section scroll-mt-48">
             <h2 class="text-lg font-bold text-gray-900 mb-2 border-l-4 border-brand-secondary pl-2">Pizzas</h2>
             <div class="space-y-2">
                 <!-- 3. Cards con más presencia aplicada a cada ítem -->
@@ -200,7 +205,7 @@
         </section>
 
         <!-- Categoría: Pastas -->
-        <section id="pastas" class="category-section">
+        <section id="pastas" class="category-section scroll-mt-48">
             <h2 class="text-lg font-bold text-gray-900 mb-2 border-l-4 border-brand-secondary pl-2">Pastas</h2>
             <div class="space-y-2">
                 <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border border-gray-100/60 flex items-center justify-between transition-transform active:scale-[0.98]" data-name="al pesto">
@@ -326,7 +331,7 @@
         </section>
 
         <!-- Categoría: Bebidas -->
-        <section id="bebidas" class="category-section">
+        <section id="bebidas" class="category-section scroll-mt-48">
             <h2 class="text-lg font-bold text-gray-900 mb-2 border-l-4 border-brand-secondary pl-2">Bebidas</h2>
             <div class="space-y-2">
                 <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border border-gray-100/60 flex items-center justify-between transition-transform active:scale-[0.98]" data-name="refresco">
@@ -392,7 +397,7 @@
         </section>
 
         <!-- Categoría: Postres -->
-        <section id="postres" class="category-section">
+        <section id="postres" class="category-section scroll-mt-48">
             <h2 class="text-lg font-bold text-gray-900 mb-2 border-l-4 border-brand-secondary pl-2">Postres</h2>
             <div class="space-y-2">
                 <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border border-gray-100/60 flex items-center justify-between transition-transform active:scale-[0.98]" data-name="tiramisu">
@@ -445,7 +450,7 @@
     </main>
 
     <!-- Barra Inferior Fija para Ver Pedido (4. CTA con Glow Animado) -->
-    <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-3 shadow-lg z-30">
+    <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-3 shadow-[0_-4px_15px_rgba(0,0,0,0.05)] z-30">
         <div class="max-w-md mx-auto flex items-center justify-between">
             <div>
                 <span class="text-xs text-gray-500 block">Total estimado</span>
@@ -460,7 +465,8 @@
 
     <!-- Scripts de Interactividad -->
     <script>
-        function scrollToCategory(categoryId) {
+        // Notar que ahora se pasa el botón a la función 'this'
+        function scrollToCategory(categoryId, btnElement) {
             const element = document.getElementById(categoryId);
             if (element) {
                 element.scrollIntoView({ behavior: 'smooth' });
@@ -471,7 +477,10 @@
             buttons.forEach(btn => {
                 btn.className = "px-4 py-1.5 rounded-full text-xs font-bold bg-gray-100 text-gray-600 whitespace-nowrap border border-gray-200";
             });
-            event.currentTarget.className = "px-4 py-1.5 rounded-full text-xs font-bold bg-brand-primary text-gray-900 whitespace-nowrap shadow-[0_2px_8px_rgba(243,178,40,0.5)] border border-brand-primary";
+            // Aplicamos las clases correctas al botón clicleado
+            if (btnElement) {
+                btnElement.className = "px-4 py-1.5 rounded-full text-xs font-bold bg-brand-primary text-gray-900 whitespace-nowrap shadow-[0_2px_8px_rgba(243,178,40,0.5)] border border-brand-primary";
+            }
         }
 
         function filterProducts() {
