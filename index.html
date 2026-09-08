@@ -648,9 +648,54 @@
             message += `------------------------\n`;
             message += `*TOTAL:* $${total.toFixed(2)}`;
 
-            const encodedMessage = encodeURIComponent(message);
-            window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, '_blank');
-        }
+            // En lugar de window.open, mostramos el mensaje generado en el modal demo:
+  document.getElementById('demoMessagePreview').innerText = message;
+  document.getElementById('demoModal').classList.remove('hidden');
+}
+
+function closeDemoModal() {
+  document.getElementById('demoModal').classList.add('hidden');
+}
     </script>
+<!-- MODAL DEMO PROSPECCIÓN -->
+<div id="demoModal" class="fixed inset-0 bg-black/85 backdrop-blur-sm z-[100] hidden flex items-center justify-center p-4">
+  <div class="bg-[#121212] border border-[#d4af37]/40 rounded-2xl p-5 max-w-sm w-full shadow-2xl relative text-white space-y-4">
+    
+    <button onclick="closeDemoModal()" class="absolute top-3 right-3 text-gray-400 hover:text-white text-lg p-1">
+      ✕
+    </button>
+
+    <div class="text-center space-y-1">
+      <span class="bg-[#d4af37]/20 text-[#d4af37] text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider">
+        Modo Demostración
+      </span>
+      <h3 class="text-lg font-bold text-white pt-1">
+        🚀 ¡Así recibirías este pedido!
+      </h3>
+      <p class="text-xs text-gray-300">
+        El sistema genera el mensaje listo para enviarse a tu WhatsApp:
+      </p>
+    </div>
+
+    <!-- Vista previa con el mensaje exacto formateado -->
+    <div class="bg-[#1a1a1a] border border-gray-800 rounded-xl p-3.5 text-xs font-mono text-gray-200 leading-relaxed max-h-56 overflow-y-auto whitespace-pre-wrap shadow-inner" id="demoMessagePreview">
+      <!-- Aquí se inserta el mensaje de texto formateado -->
+    </div>
+
+    <div class="text-center pt-1 space-y-3">
+      <p class="text-xs text-gray-300 px-1">
+        ¿Te gustaría automatizar la toma de pedidos en tu negocio con un menú interactivo como este?
+      </p>
+
+      <!-- Tu enlace directo para que te hablen a ti -->
+      <a href="https://wa.me/58XXXXXXXXXX?text=Hola,%20prob%C3%A9%20la%20demo%20del%20men%C3%BA%20interactivo%20y%20quiero%20informaci%C3%B3n%20para%20mi%20negocio" 
+         target="_blank"
+         class="block w-full bg-[#25D366] hover:bg-[#20ba5a] text-black font-bold py-3 rounded-xl transition-all text-center text-xs uppercase tracking-wide shadow-lg">
+        📲 Quiero este menú para mi negocio
+      </a>
+    </div>
+
+  </div>
+</div>
 </body>
 </html>
