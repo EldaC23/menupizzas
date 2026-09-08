@@ -394,13 +394,13 @@
         <section id="postres" class="category-section scroll-mt-48">
             <h2 class="text-lg font-bold text-gray-900 mb-2 border-l-4 border-brand-secondary pl-2">Postres</h2>
             <div class="space-y-2">
-                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border border-gray-100/60 flex items-center justify-between transition-transform active:scale-[0.98]" data-name="tiramisu" data-price="4">
+                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border border-gray-100/60 flex items-center justify-between transition-transform active:scale-[0.98]" data-name="tiramisu" data-price="5">
                     <div>
                         <h3 class="font-bold text-gray-900 text-sm">Tiramisú</h3>
-                        <p class="text-xs text-gray-500">Clásico postre italiano con café y mascarpone</p>
+                        <p class="text-xs text-gray-500">Receta tradicional italiana</p>
                     </div>
                     <div class="text-right ml-3 flex-shrink-0">
-                        <span class="block font-black text-brand-secondary text-sm mb-1">$4</span>
+                        <span class="block font-black text-brand-secondary text-sm mb-1">$5</span>
                         <div class="flex items-center space-x-2 bg-gray-100 rounded-md p-1">
                             <button onclick="updateQty('pos1', -1)" class="w-6 h-6 flex items-center justify-center text-xs font-bold bg-white text-gray-700 rounded shadow-xs">-</button>
                             <span id="qty-pos1" class="qty-count text-xs font-bold w-4 text-center">0</span>
@@ -409,10 +409,10 @@
                     </div>
                 </div>
 
-                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border border-gray-100/60 flex items-center justify-between transition-transform active:scale-[0.98]" data-name="panna cotta" data-price="4">
+                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border border-gray-100/60 flex items-center justify-between transition-transform active:scale-[0.98]" data-name="cannoli" data-price="4">
                     <div>
-                        <h3 class="font-bold text-gray-900 text-sm">Panna Cotta</h3>
-                        <p class="text-xs text-gray-500">Con coulis de frutos rojos</p>
+                        <h3 class="font-bold text-gray-900 text-sm">Cannoli</h3>
+                        <p class="text-xs text-gray-500">Rellenos de crema dulce de ricotta</p>
                     </div>
                     <div class="text-right ml-3 flex-shrink-0">
                         <span class="block font-black text-brand-secondary text-sm mb-1">$4</span>
@@ -428,74 +428,179 @@
 
     </main>
 
-    <!-- Barra fija de carrito al pie -->
-    <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg p-3 z-40">
-        <div class="max-w-md mx-auto flex items-center justify-between">
+    <!-- Barra Inferior Flotante -->
+    <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-3 shadow-lg z-20">
+        <div class="max-w-md mx-auto flex justify-between items-center">
             <div>
-                <span class="text-xs text-gray-500 block">Total a pagar:</span>
-                <span id="cartTotal" class="text-xl font-black text-brand-secondary">$0.0</span>
+                <span class="text-xs text-gray-500 block">Total estimado:</span>
+                <span id="totalBar" class="text-xl font-black text-gray-900">$0.00</span>
             </div>
-            <button onclick="openModal()" class="cta-glow bg-brand-secondary hover:bg-red-700 text-white font-bold py-2.5 px-5 rounded-xl shadow-md flex items-center space-x-2 text-sm transition-transform active:scale-95 cursor-pointer">
-                <i class="fa-solid fa-cart-shopping"></i>
+            <button onclick="openModal()" class="cta-glow bg-brand-secondary text-white font-bold px-6 py-3 rounded-xl shadow-md active:scale-95 transition flex items-center space-x-2">
+                <i class="fa-solid fa-cart-shopping text-sm"></i>
                 <span>Ver Pedido</span>
             </button>
         </div>
     </div>
 
-    <!-- Modal de confirmación -->
-    <div id="orderModal" class="fixed inset-0 bg-black/60 backdrop-blur-xs z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 hidden transition-opacity duration-300">
-        <div class="bg-white w-full max-w-md rounded-t-2xl sm:rounded-2xl p-5 shadow-2xl flex flex-col max-h-[85vh]">
-            <div class="flex items-center justify-between border-b border-gray-100 pb-3 mb-3">
-                <h3 class="font-black text-gray-900 text-lg flex items-center gap-2">
-                    <i class="fa-solid fa-receipt text-brand-secondary"></i> Resumen de tu pedido
-                </h3>
-                <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600 w-8 h-8 flex items-center justify-center rounded-full bg-gray-100">
-                    <i class="fa-solid fa-xmark text-sm"></i>
-                </button>
+    <!-- Modal de Pedido (MODIFICADO EXCLUSIVAMENTE CON CONTROLES DE CANTIDAD -/+) -->
+    <div id="orderModal" class="fixed inset-0 bg-black/60 backdrop-blur-xs flex items-end sm:items-center justify-center hidden z-50 p-0 sm:p-4">
+        <div class="bg-white w-full max-w-md rounded-t-2xl sm:rounded-2xl p-5 space-y-4 max-h-[90vh] overflow-y-auto">
+            
+            <div class="flex justify-between items-center border-b pb-3">
+                <h2 class="text-base font-bold text-gray-900">Tu Pedido</h2>
+                <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600 font-bold text-xl px-2">&times;</button>
             </div>
 
-            <div id="modalItemsList" class="overflow-y-auto space-y-3 my-2 pr-1 text-sm divide-y divide-gray-100">
-                <!-- Se llena dinámicamente -->
+            <!-- Items del Pedido en el Modal (Visualización en fila con -/+) -->
+            <div id="orderItems" class="space-y-2 max-h-48 overflow-y-auto divide-y divide-gray-100">
+                <!-- Se llena dinámicamente mediante JS -->
             </div>
 
-            <div class="border-t border-gray-100 pt-3 mt-auto space-y-3">
-                <div class="flex items-center justify-between text-base font-black text-gray-900">
-                    <span>Total estimado:</span>
-                    <span id="modalTotal" class="text-brand-secondary text-xl">$0.0</span>
+            <!-- Datos de Cliente -->
+            <div class="space-y-3 pt-2">
+                <div>
+                    <label class="block text-xs font-semibold text-gray-600 mb-1">Nombre Completo *</label>
+                    <input type="text" id="customerName" placeholder="Tu nombre" class="w-full border border-gray-300 rounded-lg p-2 text-xs focus:outline-none focus:ring-2 focus:ring-brand-secondary">
                 </div>
-                <button onclick="sendToWhatsApp()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-4 rounded-xl shadow-lg flex items-center justify-center space-x-2 text-sm transition-colors cursor-pointer">
-                    <i class="fa-brands fa-whatsapp text-lg"></i>
-                    <span>Enviar pedido por WhatsApp</span>
-                </button>
+                <div>
+                    <label class="block text-xs font-semibold text-gray-600 mb-1">Dirección / Notas opcionales</label>
+                    <input type="text" id="customerAddress" placeholder="Ej: Av. Principal / Sin orégano" class="w-full border border-gray-300 rounded-lg p-2 text-xs focus:outline-none focus:ring-2 focus:ring-brand-secondary">
+                </div>
             </div>
+
+            <!-- Total y Enviar a WhatsApp -->
+            <div class="border-t pt-3 flex items-center justify-between">
+                <span class="text-xs text-gray-600">Total:</span>
+                <span id="modalTotal" class="text-lg font-black text-gray-900">$0.00</span>
+            </div>
+
+            <button onclick="sendToWhatsApp()" class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 rounded-xl shadow-md flex items-center justify-center space-x-2 active:scale-95 transition text-sm">
+                <i class="fa-brands fa-whatsapp text-lg"></i>
+                <span>Enviar por WhatsApp</span>
+            </button>
         </div>
     </div>
 
+    <!-- Scripts de Funcionalidad -->
     <script>
-        // Cambia este número por el número real donde recibirás los pedidos
-        const PHONE_NUMBER = "584120000000"; 
+        // Catálogo Base de Productos
+        const products = {
+            'p1': { name: 'Margarita', price: 9 },
+            'p2': { name: 'Cuatro quesos', price: 13 },
+            'p3': { name: 'Vegetariana', price: 10 },
+            'p4': { name: 'Pepperoni', price: 11 },
+            'p5': { name: 'Napolitana', price: 12 },
+            'p6': { name: 'Carnívora', price: 15 },
+            'p7': { name: 'Picante', price: 14 },
+            'p8': { name: 'Hawaiana', price: 13 },
+            'pas1': { name: 'Al pesto', price: 8 },
+            'pas2': { name: 'A la boloñesa', price: 9 },
+            'pas3': { name: 'Cuatro quesos (Pasta)', price: 10 },
+            'pas4': { name: 'Alfredo', price: 11 },
+            'pas5': { name: 'Con tomate fresco', price: 12 },
+            'pas6': { name: 'Con mariscos', price: 15 },
+            'pas7': { name: 'Con vegetales', price: 10 },
+            'pas8': { name: 'Con salsa picante', price: 12 },
+            'b1': { name: 'Refresco', price: 3 },
+            'b2': { name: 'Limonada', price: 3 },
+            'b3': { name: 'Agua', price: 2 },
+            'b4': { name: 'Café', price: 2 },
+            'pos1': { name: 'Tiramisú', price: 5 },
+            'pos2': { name: 'Cannoli', price: 4 }
+        };
 
-        function scrollToCategory(categoryId, btnElement) {
-            const element = document.getElementById(categoryId);
-            if (element) {
-                element.scrollIntoView({ behavior: 'smooth' });
+        let cart = {};
+        let total = 0;
+        const whatsappNumber = "584120000000"; // Reemplazar por tu número oficial
+
+        function updateQty(id, delta) {
+            if (!cart[id]) {
+                cart[id] = { ...products[id], qty: 0 };
             }
-            
-            const buttons = document.querySelectorAll('#categoryTabs button');
-            buttons.forEach(btn => {
-                btn.className = "px-4 py-1.5 rounded-full text-xs font-bold bg-gray-100 text-gray-600 whitespace-nowrap border border-gray-200";
+
+            cart[id].qty += delta;
+
+            if (cart[id].qty <= 0) {
+                delete cart[id];
+                if (document.getElementById(`qty-${id}`)) {
+                    document.getElementById(`qty-${id}`).innerText = 0;
+                }
+            } else {
+                if (document.getElementById(`qty-${id}`)) {
+                    document.getElementById(`qty-${id}`).innerText = cart[id].qty;
+                }
+            }
+
+            calculateTotal();
+
+            // Si el modal está abierto, refrescar su contenido en tiempo real
+            if (!document.getElementById('orderModal').classList.contains('hidden')) {
+                openModal();
+            }
+        }
+
+        function calculateTotal() {
+            total = 0;
+            Object.keys(cart).forEach(id => {
+                total += cart[id].price * cart[id].qty;
             });
-            if (btnElement) {
-                btnElement.className = "px-4 py-1.5 rounded-full text-xs font-bold bg-brand-primary text-gray-900 whitespace-nowrap shadow-[0_2px_8px_rgba(243,178,40,0.5)] border border-brand-primary";
+            document.getElementById('totalBar').innerText = `$${total.toFixed(2)}`;
+        }
+
+        // Renderizado del Modal con Botones - / +
+        function openModal() {
+            const orderItemsContainer = document.getElementById('orderItems');
+            orderItemsContainer.innerHTML = '';
+
+            let hasItems = false;
+
+            Object.keys(cart).forEach(id => {
+                const item = cart[id];
+                if (item.qty > 0) {
+                    hasItems = true;
+                    const itemElement = document.createElement('div');
+                    itemElement.className = "flex items-center justify-between py-2 border-b border-gray-100 last:border-b-0";
+                    
+                    itemElement.innerHTML = `
+                        <!-- Nombre del Producto -->
+                        <div class="flex-1 pr-2">
+                            <h4 class="font-bold text-gray-900 text-xs">${item.name}</h4>
+                        </div>
+
+                        <!-- Botones de Cantidad (- / +) -->
+                        <div class="flex items-center space-x-2 bg-gray-100 rounded-md p-1 mr-2">
+                            <button onclick="updateQty('${id}', -1)" class="w-5 h-5 flex items-center justify-center text-xs font-bold bg-white text-gray-700 rounded shadow-xs active:scale-95">-</button>
+                            <span class="text-xs font-bold w-4 text-center">${item.qty}</span>
+                            <button onclick="updateQty('${id}', 1)" class="w-5 h-5 flex items-center justify-center text-xs font-bold bg-brand-primary text-gray-900 rounded shadow-xs active:scale-95">+</button>
+                        </div>
+
+                        <!-- Subtotal -->
+                        <div class="text-right w-14">
+                            <span class="font-bold text-gray-900 text-xs">$${(item.price * item.qty).toFixed(2)}</span>
+                        </div>
+                    `;
+                    orderItemsContainer.appendChild(itemElement);
+                }
+            });
+
+            if (!hasItems) {
+                orderItemsContainer.innerHTML = `<p class="text-center text-gray-400 text-xs py-4">Tu pedido está vacío</p>`;
             }
+
+            document.getElementById('modalTotal').innerText = `$${total.toFixed(2)}`;
+            document.getElementById('orderModal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('orderModal').classList.add('hidden');
         }
 
         function filterProducts() {
             const query = document.getElementById('searchInput').value.toLowerCase();
             const items = document.querySelectorAll('.product-item');
-            
+
             items.forEach(item => {
-                const name = item.getAttribute('data-name') || item.querySelector('h3').innerText.toLowerCase();
+                const name = item.getAttribute('data-name');
                 if (name.includes(query)) {
                     item.style.display = 'flex';
                 } else {
@@ -504,109 +609,47 @@
             });
         }
 
-        function updateQty(id, change) {
-            const qtyElement = document.getElementById(`qty-${id}`);
-            if (qtyElement) {
-                let currentQty = parseInt(qtyElement.innerText);
-                currentQty = Math.max(0, currentQty + change);
-                qtyElement.innerText = currentQty;
-                
-                calculateTotal();
-            }
-        }
-
-        function calculateTotal() {
-            let total = 0;
-            const items = document.querySelectorAll('.product-item');
+        function scrollToCategory(id, btn) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
             
-            items.forEach(item => {
-                const price = parseFloat(item.getAttribute('data-price')) || 0;
-                const qtyElement = item.querySelector('.qty-count');
-                if (qtyElement) {
-                    const qty = parseInt(qtyElement.innerText) || 0;
-                    total += price * qty;
-                }
+            const buttons = document.querySelectorAll('#categoryTabs button');
+            buttons.forEach(b => {
+                b.className = 'px-4 py-1.5 rounded-full text-xs font-bold bg-gray-100 text-gray-600 whitespace-nowrap border border-gray-200';
             });
 
-            const cartTotal = document.getElementById('cartTotal');
-            if (cartTotal) cartTotal.innerText = `$${total.toFixed(2)}`;
-            return total;
-        }
-
-        function openModal() {
-            const modal = document.getElementById('orderModal');
-            const listContainer = document.getElementById('modalItemsList');
-            const modalTotal = document.getElementById('modalTotal');
-            
-            let total = 0;
-            let hasItems = false;
-            listContainer.innerHTML = '';
-
-            const items = document.querySelectorAll('.product-item');
-            items.forEach(item => {
-                const name = item.querySelector('h3').innerText;
-                const price = parseFloat(item.getAttribute('data-price')) || 0;
-                const qtyElement = item.querySelector('.qty-count');
-                const qty = qtyElement ? parseInt(qtyElement.innerText) || 0 : 0;
-                
-                if (qty > 0) {
-                    hasItems = true;
-                    const itemSubtotal = price * qty;
-                    total += itemSubtotal;
-
-                    const row = document.createElement('div');
-                    row.className = "flex justify-between items-center pt-2";
-                    row.innerHTML = `
-                        <div>
-                            <p class="font-bold text-gray-800">${name}</p>
-                            <p class="text-xs text-gray-500">${qty} x $${price.toFixed(2)}</p>
-                        </div>
-                        <span class="font-black text-gray-900">$${itemSubtotal.toFixed(2)}</span>
-                    `;
-                    listContainer.appendChild(row);
-                }
-            });
-
-            if (!hasItems) {
-                alert("Aún no has seleccionado ningún producto.");
-                return;
-            }
-
-            modalTotal.innerText = `$${total.toFixed(2)}`;
-            modal.classList.remove('hidden');
-        }
-
-        function closeModal() {
-            const modal = document.getElementById('orderModal');
-            if (modal) modal.classList.add('hidden');
+            btn.className = 'px-4 py-1.5 rounded-full text-xs font-bold bg-brand-primary text-gray-900 whitespace-nowrap shadow-[0_2px_8px_rgba(243,178,40,0.5)] border border-brand-primary';
         }
 
         function sendToWhatsApp() {
-            let message = "*¡Hola! Quisiera realizar el siguiente pedido:*\n\n";
-            let hasItems = false;
-            let total = 0;
+            const name = document.getElementById('customerName').value.trim();
+            const address = document.getElementById('customerAddress').value.trim();
 
-            const items = document.querySelectorAll('.product-item');
-            items.forEach(item => {
-                const name = item.querySelector('h3').innerText;
-                const price = parseFloat(item.getAttribute('data-price')) || 0;
-                const qtyElement = item.querySelector('.qty-count');
-                const qty = qtyElement ? parseInt(qtyElement.innerText) || 0 : 0;
-                
-                if (qty > 0) {
-                    hasItems = true;
-                    const subtotal = price * qty;
-                    total += subtotal;
-                    message += `• ${qty}x ${name} - *$${subtotal.toFixed(2)}*\n`;
-                }
+            if (Object.keys(cart).length === 0) {
+                alert("Tu pedido está vacío. Agrega productos antes de enviar.");
+                return;
+            }
+
+            if (!name) {
+                alert("Por favor ingresa tu nombre.");
+                return;
+            }
+
+            let message = `*NUEVO PEDIDO - PIZZERÍA BORCELLE*\n\n`;
+            message += `*Cliente:* ${name}\n`;
+            if (address) message += `*Notas/Dirección:* ${address}\n`;
+            message += `------------------------\n`;
+            message += `*DETALLE DEL PEDIDO:*\n`;
+
+            Object.keys(cart).forEach(id => {
+                const item = cart[id];
+                message += `- ${item.qty}x ${item.name} ($${(item.price * item.qty).toFixed(2)})\n`;
             });
 
-            if (!hasItems) return;
+            message += `------------------------\n`;
+            message += `*TOTAL:* $${total.toFixed(2)}`;
 
-            message += `\n*Total estimado: $${total.toFixed(2)}*`;
-            
             const encodedMessage = encodeURIComponent(message);
-            window.open(`https://wa.me/${PHONE_NUMBER}?text=${encodedMessage}`, '_blank');
+            window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, '_blank');
         }
     </script>
 </body>
