@@ -90,23 +90,7 @@
                         </div>
                     </div>
                 </div>
-<button type="button" class="mod-toggle mt-2 text-[11px] font-bold text-brand-main flex items-center gap-1" data-mod-toggle="p1">
-            Personalizar <span class="mod-arrow">⌄</span>
-          </button>
-          <div id="mods-p1" class="hidden mt-2 pt-2 border-t border-brand-border/40">
-            <div class="flex flex-wrap gap-1.5 mb-2">
-              <label class="mod-chip"><input type="checkbox" class="hidden" data-product="perro-1" data-mod="cebolla"> Sin cebolla</label>
-      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="p1" data-mod="papas"> Sin papas</label>
-      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="p1" data-mod="tomate"> Sin tomate</label>
-      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="p1" data-mod="salsaroja"> Sin salsas rojas</label>
-      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="p1" data-mod="salsacaolis"> Sin salsa Caoli's</label>
-      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="p1" data-mod="lechuga"> Sin lechuga</label>
-      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="p1" data-mod="mayo"> Sin mayonesa</label>
-      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="p1" data-mod="solopapas"> Solo papas</label>
-            </div>
-          </div>
-        </div>
-                
+
                 <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border border-gray-100/60 flex items-center justify-between transition-transform active:scale-[0.98]" data-name="cuatro quesos" data-price="13">
                     <div>
                         <h3 class="font-bold text-gray-900 text-sm">Cuatro quesos</h3>
@@ -526,15 +510,6 @@
         };
 
         let cart = {};
-        
-         function getModLabel(mod) {
-      const labels = {
-        cebolla: 'sin cebolla', papas: 'sin papas', tomate: 'sin tomate',
-        salsaroja: 'sin salsas rojas', salsacaolis: "sin salsa Caoli's",
-        lechuga: 'sin lechuga', mayo: 'sin mayonesa', solopapas: 'solo papas'
-      };
-      return labels[mod] || mod;
-    }
         let total = 0;
         const whatsappNumber = "584120000000"; // Reemplazar por tu número oficial
 
