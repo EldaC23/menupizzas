@@ -45,6 +45,31 @@
             50% { box-shadow: 0 4px 22px rgba(211,47,47,0.6); }
         }
         .cta-glow { animation: glowPulse 2.2s ease-in-out infinite; }
+
+        .mod-chip {
+          display: inline-flex; align-items: center; gap: 4px;
+          padding: 4px 10px; border-radius: 999px;
+          border: 1px solid #e5e7eb; background: white;
+          font-size: 10px; font-weight: 600; color: #374151;
+          cursor: pointer; transition: all .15s;
+        }
+        .mod-chip.is-active {
+          background: #F3B228; border-color: #F3B228; color: #1F2937;
+        }
+        .choice-btn {
+          flex: 1;
+          padding: 6px 8px; border-radius: 999px;
+          border: 1px solid #e5e7eb; background: white;
+          font-size: 10px; font-weight: 700; color: #374151;
+          cursor: pointer; transition: all .15s;
+          text-align: center; white-space: nowrap;
+        }
+        .choice-btn.is-active {
+          background: #D32F2F; border-color: #D32F2F; color: white;
+        }
+        .mod-toggle .mod-arrow { display: inline-block; transition: transform .2s; }
+        .mod-toggle.is-open .mod-arrow { transform: rotate(180deg); }
+
     </style>
 </head>
 <!-- Fondo Negro Azabache con suave gradiente -->
@@ -82,8 +107,8 @@
         <section id="pizzas" class="category-section scroll-mt-48">
             <h2 class="text-lg font-bold text-[#eab308] border-l-4 border-[#eab308] pl-2">Pizzas</h2>
             <div class="space-y-2">
-                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border-2 border-[#eab308] flex items-center justify-between transition-transform active:scale-[0.98]" data-name="margarita" data-price="9">
-                    <div>
+                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border-2 border-[#eab308] transition-transform active:scale-[0.98]" data-name="margarita" data-price="9">
+          <div class="flex items-center justify-between"><div>
                         <h3 class="font-bold text-gray-900 text-sm">Margarita</h3>
                         <p class="text-xs text-gray-500">Salsa de tomate, queso mozzarella y albahaca fresca</p>
                     </div>
@@ -94,11 +119,25 @@
                             <span id="qty-p1" class="qty-count text-xs font-bold text-gray-900 w-4 text-center">0</span>
                             <button onclick="updateQty('p1', 1)" class="w-6 h-6 flex items-center justify-center text-xs font-bold bg-brand-primary text-gray-900 rounded shadow-xs">+</button>
                         </div>
-                    </div>
+                    </div></div>
+          <button type="button" class="mod-toggle mt-2 text-[11px] font-bold text-brand-secondary flex items-center gap-1" data-mod-toggle="p1">
+            Personalizar <span class="mod-arrow">⌄</span>
+          </button>
+          <div id="mods-p1" class="hidden mt-2 pt-2 border-t border-gray-200">
+            <p class="text-[10px] font-bold text-gray-500 uppercase mb-1">Borde</p>
+            <div class="flex gap-2 w-full mb-2">
+              <button type="button" class="choice-btn" data-product="p1" data-choice="clasico">Clásico</button>
+              <button type="button" class="choice-btn" data-product="p1" data-choice="relleno-queso">Relleno de queso</button>
+            </div>
+            <div class="flex flex-wrap gap-1.5">
+              <label class="mod-chip"><input type="checkbox" class="hidden" data-product="p1" data-mod="cebolla"> Sin cebolla</label>
+              <label class="mod-chip"><input type="checkbox" class="hidden" data-product="p1" data-mod="oregano"> Sin orégano</label>
+            </div>
+          </div>
                 </div>
 
-                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border-2 border-[#eab308] flex items-center justify-between transition-transform active:scale-[0.98]" data-name="cuatro quesos" data-price="13">
-                    <div>
+                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border-2 border-[#eab308] transition-transform active:scale-[0.98]" data-name="cuatro quesos" data-price="13">
+          <div class="flex items-center justify-between"><div>
                         <h3 class="font-bold text-gray-900 text-sm">Cuatro quesos</h3>
                         <p class="text-xs text-gray-500">Mozzarella, gorgonzola, parmesano y fontina</p>
                     </div>
@@ -109,11 +148,25 @@
                             <span id="qty-p2" class="qty-count text-xs font-bold text-gray-900 w-4 text-center">0</span>
                             <button onclick="updateQty('p2', 1)" class="w-6 h-6 flex items-center justify-center text-xs font-bold bg-brand-primary text-gray-900 rounded shadow-xs">+</button>
                         </div>
-                    </div>
+                    </div></div>
+          <button type="button" class="mod-toggle mt-2 text-[11px] font-bold text-brand-secondary flex items-center gap-1" data-mod-toggle="p2">
+            Personalizar <span class="mod-arrow">⌄</span>
+          </button>
+          <div id="mods-p2" class="hidden mt-2 pt-2 border-t border-gray-200">
+            <p class="text-[10px] font-bold text-gray-500 uppercase mb-1">Borde</p>
+            <div class="flex gap-2 w-full mb-2">
+              <button type="button" class="choice-btn" data-product="p2" data-choice="clasico">Clásico</button>
+              <button type="button" class="choice-btn" data-product="p2" data-choice="relleno-queso">Relleno de queso</button>
+            </div>
+            <div class="flex flex-wrap gap-1.5">
+              <label class="mod-chip"><input type="checkbox" class="hidden" data-product="p2" data-mod="cebolla"> Sin cebolla</label>
+              <label class="mod-chip"><input type="checkbox" class="hidden" data-product="p2" data-mod="oregano"> Sin orégano</label>
+            </div>
+          </div>
                 </div>
 
-                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border-2 border-[#eab308] flex items-center justify-between transition-transform active:scale-[0.98]" data-name="vegetariana" data-price="10">
-                    <div>
+                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border-2 border-[#eab308] transition-transform active:scale-[0.98]" data-name="vegetariana" data-price="10">
+          <div class="flex items-center justify-between"><div>
                         <h3 class="font-bold text-gray-900 text-sm">Vegetariana</h3>
                         <p class="text-xs text-gray-500">Pimientos, cebolla, champiñones y aceitunas</p>
                     </div>
@@ -124,11 +177,25 @@
                             <span id="qty-p3" class="qty-count text-xs font-bold text-gray-900 w-4 text-center">0</span>
                             <button onclick="updateQty('p3', 1)" class="w-6 h-6 flex items-center justify-center text-xs font-bold bg-brand-primary text-gray-900 rounded shadow-xs">+</button>
                         </div>
-                    </div>
+                    </div></div>
+          <button type="button" class="mod-toggle mt-2 text-[11px] font-bold text-brand-secondary flex items-center gap-1" data-mod-toggle="p3">
+            Personalizar <span class="mod-arrow">⌄</span>
+          </button>
+          <div id="mods-p3" class="hidden mt-2 pt-2 border-t border-gray-200">
+            <p class="text-[10px] font-bold text-gray-500 uppercase mb-1">Borde</p>
+            <div class="flex gap-2 w-full mb-2">
+              <button type="button" class="choice-btn" data-product="p3" data-choice="clasico">Clásico</button>
+              <button type="button" class="choice-btn" data-product="p3" data-choice="relleno-queso">Relleno de queso</button>
+            </div>
+            <div class="flex flex-wrap gap-1.5">
+              <label class="mod-chip"><input type="checkbox" class="hidden" data-product="p3" data-mod="cebolla"> Sin cebolla</label>
+              <label class="mod-chip"><input type="checkbox" class="hidden" data-product="p3" data-mod="oregano"> Sin orégano</label>
+            </div>
+          </div>
                 </div>
 
-                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border-2 border-[#eab308] flex items-center justify-between transition-transform active:scale-[0.98]" data-name="pepperoni" data-price="11">
-                    <div>
+                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border-2 border-[#eab308] transition-transform active:scale-[0.98]" data-name="pepperoni" data-price="11">
+          <div class="flex items-center justify-between"><div>
                         <h3 class="font-bold text-gray-900 text-sm">Pepperoni</h3>
                         <p class="text-xs text-gray-500">Salsa de tomate, mozzarella y rodajas de pepperoni</p>
                     </div>
@@ -139,11 +206,25 @@
                             <span id="qty-p4" class="qty-count text-xs font-bold text-gray-900 w-4 text-center">0</span>
                             <button onclick="updateQty('p4', 1)" class="w-6 h-6 flex items-center justify-center text-xs font-bold bg-brand-primary text-gray-900 rounded shadow-xs">+</button>
                         </div>
-                    </div>
+                    </div></div>
+          <button type="button" class="mod-toggle mt-2 text-[11px] font-bold text-brand-secondary flex items-center gap-1" data-mod-toggle="p4">
+            Personalizar <span class="mod-arrow">⌄</span>
+          </button>
+          <div id="mods-p4" class="hidden mt-2 pt-2 border-t border-gray-200">
+            <p class="text-[10px] font-bold text-gray-500 uppercase mb-1">Borde</p>
+            <div class="flex gap-2 w-full mb-2">
+              <button type="button" class="choice-btn" data-product="p4" data-choice="clasico">Clásico</button>
+              <button type="button" class="choice-btn" data-product="p4" data-choice="relleno-queso">Relleno de queso</button>
+            </div>
+            <div class="flex flex-wrap gap-1.5">
+              <label class="mod-chip"><input type="checkbox" class="hidden" data-product="p4" data-mod="cebolla"> Sin cebolla</label>
+              <label class="mod-chip"><input type="checkbox" class="hidden" data-product="p4" data-mod="oregano"> Sin orégano</label>
+            </div>
+          </div>
                 </div>
 
-                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border-2 border-[#eab308] flex items-center justify-between transition-transform active:scale-[0.98]" data-name="napolitana" data-price="12">
-                    <div>
+                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border-2 border-[#eab308] transition-transform active:scale-[0.98]" data-name="napolitana" data-price="12">
+          <div class="flex items-center justify-between"><div>
                         <h3 class="font-bold text-gray-900 text-sm">Napolitana</h3>
                         <p class="text-xs text-gray-500">Tomate, mozzarella, anchoas y orégano</p>
                     </div>
@@ -154,11 +235,25 @@
                             <span id="qty-p5" class="qty-count text-xs font-bold text-gray-900 w-4 text-center">0</span>
                             <button onclick="updateQty('p5', 1)" class="w-6 h-6 flex items-center justify-center text-xs font-bold bg-brand-primary text-gray-900 rounded shadow-xs">+</button>
                         </div>
-                    </div>
+                    </div></div>
+          <button type="button" class="mod-toggle mt-2 text-[11px] font-bold text-brand-secondary flex items-center gap-1" data-mod-toggle="p5">
+            Personalizar <span class="mod-arrow">⌄</span>
+          </button>
+          <div id="mods-p5" class="hidden mt-2 pt-2 border-t border-gray-200">
+            <p class="text-[10px] font-bold text-gray-500 uppercase mb-1">Borde</p>
+            <div class="flex gap-2 w-full mb-2">
+              <button type="button" class="choice-btn" data-product="p5" data-choice="clasico">Clásico</button>
+              <button type="button" class="choice-btn" data-product="p5" data-choice="relleno-queso">Relleno de queso</button>
+            </div>
+            <div class="flex flex-wrap gap-1.5">
+              <label class="mod-chip"><input type="checkbox" class="hidden" data-product="p5" data-mod="cebolla"> Sin cebolla</label>
+              <label class="mod-chip"><input type="checkbox" class="hidden" data-product="p5" data-mod="oregano"> Sin orégano</label>
+            </div>
+          </div>
                 </div>
 
-                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border-2 border-[#eab308] flex items-center justify-between transition-transform active:scale-[0.98]" data-name="carnivora" data-price="15">
-                    <div>
+                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border-2 border-[#eab308] transition-transform active:scale-[0.98]" data-name="carnivora" data-price="15">
+          <div class="flex items-center justify-between"><div>
                         <h3 class="font-bold text-gray-900 text-sm">Carnívora</h3>
                         <p class="text-xs text-gray-500">Jamón, tocino, carne molida y pepperoni</p>
                     </div>
@@ -169,11 +264,25 @@
                             <span id="qty-p6" class="qty-count text-xs font-bold text-gray-900 w-4 text-center">0</span>
                             <button onclick="updateQty('p6', 1)" class="w-6 h-6 flex items-center justify-center text-xs font-bold bg-brand-primary text-gray-900 rounded shadow-xs">+</button>
                         </div>
-                    </div>
+                    </div></div>
+          <button type="button" class="mod-toggle mt-2 text-[11px] font-bold text-brand-secondary flex items-center gap-1" data-mod-toggle="p6">
+            Personalizar <span class="mod-arrow">⌄</span>
+          </button>
+          <div id="mods-p6" class="hidden mt-2 pt-2 border-t border-gray-200">
+            <p class="text-[10px] font-bold text-gray-500 uppercase mb-1">Borde</p>
+            <div class="flex gap-2 w-full mb-2">
+              <button type="button" class="choice-btn" data-product="p6" data-choice="clasico">Clásico</button>
+              <button type="button" class="choice-btn" data-product="p6" data-choice="relleno-queso">Relleno de queso</button>
+            </div>
+            <div class="flex flex-wrap gap-1.5">
+              <label class="mod-chip"><input type="checkbox" class="hidden" data-product="p6" data-mod="cebolla"> Sin cebolla</label>
+              <label class="mod-chip"><input type="checkbox" class="hidden" data-product="p6" data-mod="oregano"> Sin orégano</label>
+            </div>
+          </div>
                 </div>
 
-                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border-2 border-[#eab308] flex items-center justify-between transition-transform active:scale-[0.98]" data-name="picante" data-price="14">
-                    <div>
+                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border-2 border-[#eab308] transition-transform active:scale-[0.98]" data-name="picante" data-price="14">
+          <div class="flex items-center justify-between"><div>
                         <h3 class="font-bold text-gray-900 text-sm">Picante</h3>
                         <p class="text-xs text-gray-500">Salami picante, jalapeños y salsa especial</p>
                     </div>
@@ -184,11 +293,25 @@
                             <span id="qty-p7" class="qty-count text-xs font-bold text-gray-900 w-4 text-center">0</span>
                             <button onclick="updateQty('p7', 1)" class="w-6 h-6 flex items-center justify-center text-xs font-bold bg-brand-primary text-gray-900 rounded shadow-xs">+</button>
                         </div>
-                    </div>
+                    </div></div>
+          <button type="button" class="mod-toggle mt-2 text-[11px] font-bold text-brand-secondary flex items-center gap-1" data-mod-toggle="p7">
+            Personalizar <span class="mod-arrow">⌄</span>
+          </button>
+          <div id="mods-p7" class="hidden mt-2 pt-2 border-t border-gray-200">
+            <p class="text-[10px] font-bold text-gray-500 uppercase mb-1">Borde</p>
+            <div class="flex gap-2 w-full mb-2">
+              <button type="button" class="choice-btn" data-product="p7" data-choice="clasico">Clásico</button>
+              <button type="button" class="choice-btn" data-product="p7" data-choice="relleno-queso">Relleno de queso</button>
+            </div>
+            <div class="flex flex-wrap gap-1.5">
+              <label class="mod-chip"><input type="checkbox" class="hidden" data-product="p7" data-mod="cebolla"> Sin cebolla</label>
+              <label class="mod-chip"><input type="checkbox" class="hidden" data-product="p7" data-mod="oregano"> Sin orégano</label>
+            </div>
+          </div>
                 </div>
 
-                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border-2 border-[#eab308] flex items-center justify-between transition-transform active:scale-[0.98]" data-name="hawaiana" data-price="13">
-                    <div>
+                <div class="product-item bg-gradient-to-b from-white to-[#FFFBF5] rounded-xl p-3 shadow-[0_2px_10px_rgba(31,41,55,0.06)] border-2 border-[#eab308] transition-transform active:scale-[0.98]" data-name="hawaiana" data-price="13">
+          <div class="flex items-center justify-between"><div>
                         <h3 class="font-bold text-gray-900 text-sm">Hawaiana</h3>
                         <p class="text-xs text-gray-500">Jamón, piña fresca y queso mozzarella</p>
                     </div>
@@ -199,7 +322,21 @@
                             <span id="qty-p8" class="qty-count text-xs font-bold text-gray-900 w-4 text-center">0</span>
                             <button onclick="updateQty('p8', 1)" class="w-6 h-6 flex items-center justify-center text-xs font-bold bg-brand-primary text-gray-900 rounded shadow-xs">+</button>
                         </div>
-                    </div>
+                    </div></div>
+          <button type="button" class="mod-toggle mt-2 text-[11px] font-bold text-brand-secondary flex items-center gap-1" data-mod-toggle="p8">
+            Personalizar <span class="mod-arrow">⌄</span>
+          </button>
+          <div id="mods-p8" class="hidden mt-2 pt-2 border-t border-gray-200">
+            <p class="text-[10px] font-bold text-gray-500 uppercase mb-1">Borde</p>
+            <div class="flex gap-2 w-full mb-2">
+              <button type="button" class="choice-btn" data-product="p8" data-choice="clasico">Clásico</button>
+              <button type="button" class="choice-btn" data-product="p8" data-choice="relleno-queso">Relleno de queso</button>
+            </div>
+            <div class="flex flex-wrap gap-1.5">
+              <label class="mod-chip"><input type="checkbox" class="hidden" data-product="p8" data-mod="cebolla"> Sin cebolla</label>
+              <label class="mod-chip"><input type="checkbox" class="hidden" data-product="p8" data-mod="oregano"> Sin orégano</label>
+            </div>
+          </div>
                 </div>
             </div>
         </section>
@@ -521,7 +658,7 @@
 
         function updateQty(id, delta) {
             if (!cart[id]) {
-                cart[id] = { ...products[id], qty: 0 };
+                cart[id] = { ...products[id], qty: 0, mods: [], border: null };
             }
 
             cart[id].qty += delta;
@@ -553,6 +690,56 @@
             document.getElementById('totalBar').innerText = `$${total.toFixed(2)}`;
         }
 
+        function getModLabel(mod) {
+            const labels = { cebolla: 'sin cebolla', oregano: 'sin orégano' };
+            return labels[mod] || mod;
+        }
+        function getBorderLabel(choice) {
+            const labels = { clasico: 'borde clásico', 'relleno-queso': 'borde relleno de queso' };
+            return labels[choice] || choice;
+        }
+        function ensureCartItem(id) {
+            if (!cart[id]) cart[id] = { ...products[id], qty: 0, mods: [], border: null };
+            return cart[id];
+        }
+
+        // Delegación de eventos: un solo listener para todos los acordeones,
+        // checkboxes y botones de borde de todas las pizzas.
+        document.addEventListener('click', (e) => {
+            const toggleBtn = e.target.closest('[data-mod-toggle]');
+            if (toggleBtn) {
+                const id = toggleBtn.getAttribute('data-mod-toggle');
+                document.getElementById(`mods-${id}`).classList.toggle('hidden');
+                toggleBtn.classList.toggle('is-open');
+                return;
+            }
+            const choiceBtn = e.target.closest('.choice-btn');
+            if (choiceBtn) {
+                const id = choiceBtn.getAttribute('data-product');
+                const choice = choiceBtn.getAttribute('data-choice');
+                const item = ensureCartItem(id);
+                item.border = (item.border === choice) ? null : choice;
+                document.querySelectorAll(`.choice-btn[data-product="${id}"]`).forEach(b => {
+                    b.classList.toggle('is-active', b.getAttribute('data-choice') === item.border);
+                });
+                return;
+            }
+        });
+
+        document.addEventListener('change', (e) => {
+            if (e.target.matches('input[type="checkbox"][data-mod]')) {
+                const id = e.target.getAttribute('data-product');
+                const mod = e.target.getAttribute('data-mod');
+                const item = ensureCartItem(id);
+                if (e.target.checked) {
+                    if (!item.mods.includes(mod)) item.mods.push(mod);
+                } else {
+                    item.mods = item.mods.filter(m => m !== mod);
+                }
+                e.target.closest('.mod-chip').classList.toggle('is-active', e.target.checked);
+            }
+        });
+
         // Renderizado del Modal con Botones - / +
         function openModal() {
             const orderItemsContainer = document.getElementById('orderItems');
@@ -567,10 +754,16 @@
                     const itemElement = document.createElement('div');
                     itemElement.className = "flex items-center justify-between py-2 border-b border-gray-100 last:border-b-0";
                     
+                    let modText = '';
+                    const modParts = (item.mods || []).map(getModLabel);
+                    if (item.border) modParts.push(getBorderLabel(item.border));
+                    if (modParts.length) modText = `<p class="text-[10px] text-brand-secondary italic mt-0.5">${modParts.join(', ')}</p>`;
+
                     itemElement.innerHTML = `
                         <!-- Nombre del Producto -->
                         <div class="flex-1 pr-2">
                             <h4 class="font-bold text-gray-900 text-xs">${item.name}</h4>
+                            ${modText}
                         </div>
 
                         <!-- Botones de Cantidad (- / +) -->
@@ -648,7 +841,10 @@
 
             Object.keys(cart).forEach(id => {
                 const item = cart[id];
-                message += `- ${item.qty}x ${item.name} ($${(item.price * item.qty).toFixed(2)})\n`;
+                const modParts = (item.mods || []).map(getModLabel);
+                if (item.border) modParts.push(getBorderLabel(item.border));
+                const modText = modParts.length ? ` (${modParts.join(', ')})` : '';
+                message += `- ${item.qty}x ${item.name}${modText} ($${(item.price * item.qty).toFixed(2)})\n`;
             });
 
             message += `------------------------\n`;
