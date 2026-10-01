@@ -74,6 +74,17 @@
 </head>
 <!-- Fondo Negro Azabache con suave gradiente -->
 <body class="bg-[#0a0a0a] text-[#f3f3f3] font-sans antialiased min-h-screen">
+
+    <!-- Volver a la landing de Menús Interactivos (solo si llegan con ?from=efecto) -->
+    <a id="back-efecto" href="https://eldac23.github.io/efectolandingmenu/#demos"
+       style="display:none" class="bg-black text-center text-xs font-bold uppercase tracking-wider text-[#eab308] py-2.5 border-b border-white/10">
+        &larr; Volver a Men&uacute;s Interactivos
+    </a>
+    <script>
+        if (new URLSearchParams(location.search).get('from') === 'efecto') {
+            document.getElementById('back-efecto').style.display = 'block';
+        }
+    </script>
     <!-- Header y Menú Sticky -->
     <div class="sticky top-0 z-30">
         <header class="bg-gradient-to-r from-[#eab308] via-[#d4af37] to-[#eab308] p-6 text-center text-black">
